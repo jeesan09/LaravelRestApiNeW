@@ -18,17 +18,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-	Route::apiResource('/products','ProductController');
-    /*Route::group(['middleware' => ['jwt.auth']], function() {
+	
+
+    /*
+
+    Route::group(['middleware' => ['jwt.auth']], function() {
 
        Route::apiResource('/products','ProductController');
         
     });
 
-*/
+   */
+    Route::apiResource('/products','ProductController');
+    
     Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
 		Route::apiResource('/{product}/reviews','ReviewsController');
-
-});
+	});
 
