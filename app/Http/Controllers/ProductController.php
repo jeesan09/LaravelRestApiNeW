@@ -18,7 +18,7 @@ class ProductController extends Controller
         //
       //  return Product::all(); this is also working but calling the function at productResourceCollection
          return ProductResource::collection(Product::all());
-         
+
     }
 
     /**
@@ -29,6 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**

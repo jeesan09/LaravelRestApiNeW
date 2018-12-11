@@ -15,8 +15,12 @@ $factory->define(App\Model\Reviews::class, function (Faker $faker) {
              {
              return Product::all()->random();
              }
-    
-         
-       
-    ];
+             /*
+              git Pull Origin Master(){
+
+             	return $this->Reviews
+             }
+
+             */
+           ];
 });
