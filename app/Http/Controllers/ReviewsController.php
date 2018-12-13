@@ -15,6 +15,7 @@ class ReviewsController extends Controller
     public function index()
     {
         //
+        return "gooooooooooood";
     }
 
     /**
