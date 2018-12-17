@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ApiResources\ProductResource;
+use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Model\Product;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-      //  return Product::all(); this is also working but calling the function at productResourceCollection
-         return ProductResource::collection(Product::all());
+        
+      //  return Product::all();         // this is also working but calling the function at productResourceCollection  
+      return  ProductResourceCollection::collection(Product::paginate(5));  // this is also working but calling the function at productResourceCollection
+
+    //    return ProductResource::collection(Product::all()); // this will call product resourece
 
     }
 
