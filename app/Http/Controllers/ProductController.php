@@ -17,8 +17,8 @@ class ProductController extends Controller
     public function index()
     {
         
-      //  return Product::all();         // this is also working but calling the function at productResourceCollection  
-      return  ProductResourceCollection::collection(Product::paginate(5));  // this is also working but calling the function at productResourceCollection
+      //  return Product::all();// this is also working but calling the function at productResourceCollection  
+     return  ProductResourceCollection::collection(Product::paginate(5));// this is also working but calling the function at productResourceCollection
 
     //    return ProductResource::collection(Product::all()); // this will call product resourece
 
