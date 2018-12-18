@@ -36,7 +36,7 @@ Route::group([
     });
 
    */
-    Route::apiResource('/products','ProductController');
+ Route::apiResource('/products','ProductController');
     
 /*    Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
@@ -47,4 +47,4 @@ Route::group([
  Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
     Route::apiResource('/{product}/reviews','ReviewsController');
-  });
+ });

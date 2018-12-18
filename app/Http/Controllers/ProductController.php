@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomRequest\ProductRequest;
 use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Model\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+
 
 class ProductController extends Controller
 {
@@ -14,15 +18,30 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+    public function __construct()
+    {
+         $this->middleware('jwt.auth')->except('index','show');
+    }  
+
+ 
+
+
     public function index()
     {
         
       //  return Product::all();// this is also working but calling the function at productResourceCollection  
      return  ProductResourceCollection::collection(Product::paginate(5));// this is also working but calling the function at productResourceCollection
 
-    //    return ProductResource::collection(Product::all()); // this will call product resourece
+     //   return ProductResource::collection(Product::all());//this will call product resourece
 
     }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,9 +60,29 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+      //  return 'function called';
+       // $ldate = new DateTime('now');
+        //return $ldate;
+        $productClassOB = new Product;
+
+        $productClassOB->name = $request->Name;
+        $productClassOB->price = $request->Price;
+        $productClassOB->detail =$request->Descripton;
+        $productClassOB->discount= $request->Discount;
+
+        $productClassOB->save();
+
+      //  return $request->all(); this anly returns the the data when the request is success;
+
+
+
+       return response([
+
+            'data'=> new ProductResource($productClassOB)
+
+        ], Response::HTTP_CREATED /*201*/);
     }
 
     /**
@@ -79,6 +118,18 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $product->name = $request->Name;
+        $product->price = $request->Price;
+        $product->detail =$request->Descripton;
+        $product->discount= $request->Discount;
+
+        $product->save();
+        return response([
+
+            'data'=> new ProductResource($product)
+
+        ],Response::HTTP_OK/*201*/);
+      //  return $product;
     }
 
     /**
@@ -88,7 +139,15 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)
+    
     {
         //
+        $product->delete();
+
+        return response([
+
+            'data'=> new ProductResource($product)
+
+        ],Response::HTTP_ACCEPTED /*201*/);
     }
 }

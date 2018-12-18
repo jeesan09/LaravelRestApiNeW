@@ -1,0 +1,32 @@
+01-database seeder for each model
+
+1.$ php artisan make:seeder  UsersTableSeeder
+1.1--factory(App\Article::class,50)->create();
+-------------------------
+02-command to eaxicute dummy data
+
+1. php artisan db:seed;
+--------------------------------
+03-creare resource for each model
+
+1.php artisan make:resource User
+
+--------------------------------------
+04-insert Http/Request in Controller
+
+1.use Illuminate\Http\Request;
+
+-------------------------------------------
+05-Database Migraton Problem----in (Proviers) inside (AppServiceProvider)\
+
+use Illuminate\Support\Facades\Schema;
+Schema::defaultStringLength(191);
+------------------------------------------
+
+06-https://kirankoduru.github.io/python/sublime-text-ninja.html //subline ShortCut
+
+
+
+06-access token Crome Extention
+
+01--https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US
