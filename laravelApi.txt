@@ -1,3 +1,8 @@
+
+
+MODELS NAME-----SHOULD BE IN SINGULAR FORM............AS (REVIEWS)............WRONG THIS SHOULD BE (REVIEW); 
+
+
 01-database seeder for each model
 
 1.$ php artisan make:seeder  UsersTableSeeder
@@ -27,6 +32,52 @@ Schema::defaultStringLength(191);
 
 
 
-06-access token Crome Extention
-
+07-access token Crome Extention
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 01--https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US
+02- SUBLINE:php companion;
+
+--------------------------------------------------------------------------------------===============================+++++++==================================----------------------------------------------------------------------------
+
+ANGULAR TEXT
+
+
+ng new AppName
+npm install -g @angular/cli
+ng add @angular/material
+
+----if Problem---------
+ng update @angular/cli
+-----------------------
+
+--------------
+git project ...
+
+A. Laravel
+
+1- comoser install
+2- cp .env.example .env / For create Env
+3- php artisan key:generate
+4- php artisan jwt:secret
+
+
+B.Angular or Any JS
+
+1-$ npm install npm@latest -g
+2- npm install
+
+---------------
+
+-----------------------------
+inside :app.module.ts
+import { MatExpansionModule } from '@angular/material';
+
+
+------------------------------------------
+npm installation problem
+
+npm i -g npm@latest.
+npm cache clean -f
+npm install -g npm
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

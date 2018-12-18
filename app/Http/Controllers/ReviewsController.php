@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomRequest\ReviewRequest;
+use App\Http\Resources\ApiResources\ReviewsResource;
 use App\Model\Product;
-use App\Model\Reviews;
+use App\Model\Review;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+
 
 class ReviewsController extends Controller
 {
@@ -37,9 +42,24 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReviewRequest $request,Product $product)
     {
-        //
+        // return $request;
+       // return 'function called';
+          $reviewClassOb= new Reviews;
+          $reviewClassOb->product_id = $product->id;
+          $reviewClassOb->customer   = $request->customer;
+          $reviewClassOb->review     = $request->review; 
+          $reviewClassOb->rating     = $request->rating;
+
+          $reviewClassOb->save();
+
+
+        return response([
+
+            'data'=> new ReviewsResource($reviewClassOb)
+
+        ], Response::HTTP_CREATED );
     }
 
     /**
@@ -48,9 +68,10 @@ class ReviewsController extends Controller
      * @param  \App\Model\Reviews  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function show(Reviews $reviews)
+    public function show(Product $product, Review $review)
     {
         //
+        return $review;
         
     }
 
@@ -72,9 +93,32 @@ class ReviewsController extends Controller
      * @param  \App\Model\Reviews  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reviews $reviews)
+    public function update(Request $request, Product $product,Review $review)
     {
         //
+
+        /* 
+          return $reviews;
+          return Reviews::find($reviews); //THIS IS ANTOHER SOLUTION---TO FIND THE REVIEW---THEN PARAMITERS WILL BE
+          (Request $request, Product $product, $review)  LIKE THAT 
+
+        */
+
+          //return $review;
+          $review->customer   = $request->customer;
+          $review->review     = $request->review; 
+          $review->rating     = $request->rating;
+
+          $review->save();
+
+          return response([
+
+            'data'=> new ReviewsResource($review)
+
+          ], Response::HTTP_OK );
+      
+
+
     }
 
     /**
@@ -83,8 +127,17 @@ class ReviewsController extends Controller
      * @param  \App\Model\Reviews  $reviews
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reviews $reviews)
+    public function destroy(Product $product , Review $review)
     {
-        //
+
+         $review->delete();
+
+         return response([
+
+         'data'=> new ReviewsResource($review)
+
+         ], Response::HTTP_OK );
+      
+    
     }
 }

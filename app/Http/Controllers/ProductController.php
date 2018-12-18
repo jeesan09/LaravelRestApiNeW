@@ -65,6 +65,7 @@ class ProductController extends Controller
       //  return 'function called';
        // $ldate = new DateTime('now');
         //return $ldate;
+      //  return $request;
         $productClassOB = new Product;
 
         $productClassOB->name = $request->Name;
@@ -82,7 +83,7 @@ class ProductController extends Controller
 
             'data'=> new ProductResource($productClassOB)
 
-        ], Response::HTTP_CREATED /*201*/);
+        ], Response::HTTP_CREATED );
     }
 
     /**
@@ -94,6 +95,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        //return 'sssssssss';
+       // return $product;
         return new ProductResource($product);
     }
 
@@ -118,6 +121,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        //return $product;
         $product->name = $request->Name;
         $product->price = $request->Price;
         $product->detail =$request->Descripton;
@@ -139,7 +143,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)
-    
+
     {
         //
         $product->delete();

@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Model\Reviews;
+use App\Model\Review;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -12,6 +12,6 @@ class Product extends Model
     public function review_many()
 
     {
-      return $this->hasMany(Reviews::class);
+      return $this->hasMany(Review::class);
     }
 }

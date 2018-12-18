@@ -36,15 +36,17 @@ Route::group([
     });
 
    */
- Route::apiResource('/products','ProductController');
+    Route::apiResource('/products','ProductController');
     
-/*    Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
+    Route::group([ 'prefix'=>'products'],function(){
 
 		Route::apiResource('/{product}/reviews','ReviewsController');
-	});*/
+	});
 
     
- Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
+/* Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
     Route::apiResource('/{product}/reviews','ReviewsController');
- });
+ }); // this is the way of Putting MiddleWere inside Routing*/
+
+
