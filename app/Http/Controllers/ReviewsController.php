@@ -71,7 +71,7 @@ class ReviewsController extends Controller
     public function show(Product $product, Review $review)
     {
         //
-        return $review;
+        return $review->productbelons;
         
     }
 
@@ -103,7 +103,6 @@ class ReviewsController extends Controller
           (Request $request, Product $product, $review)  LIKE THAT 
 
         */
-
           //return $review;
           $review->customer   = $request->customer;
           $review->review     = $request->review; 
@@ -111,14 +110,14 @@ class ReviewsController extends Controller
 
           $review->save();
 
+
+
           return response([
 
             'data'=> new ReviewsResource($review)
 
           ], Response::HTTP_OK );
       
-
-
     }
 
     /**

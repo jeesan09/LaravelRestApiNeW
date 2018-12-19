@@ -3,7 +3,7 @@
 use App\Model\Product;
 use Faker\Generator as Faker;
 
-$factory->define(App\Model\Reviews::class, function (Faker $faker) {
+$factory->define(App\Model\Review::class, function (Faker $faker) {
     return [
         //
             'customer'=>$faker->name,
@@ -20,7 +20,8 @@ $factory->define(App\Model\Reviews::class, function (Faker $faker) {
 
              	return $this->Reviews
              }
-
              */
+
+             
            ];
 });

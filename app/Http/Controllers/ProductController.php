@@ -31,9 +31,9 @@ class ProductController extends Controller
 
     public function index()
     {
-        
-      //  return Product::all();// this is also working but calling the function at productResourceCollection  
-     return  ProductResourceCollection::collection(Product::paginate(5));// this is also working but calling the function at productResourceCollection
+       // paginate(5)
+      // return Product::all();// this is also working but calling the function at productResourceCollection  
+     return  ProductResourceCollection::collection(Product::orderBy('created_at', 'desc')->paginate(5));// this is also working but calling the function at productResourceCollection
 
      //   return ProductResource::collection(Product::all());//this will call product resourece
 
@@ -76,8 +76,6 @@ class ProductController extends Controller
         $productClassOB->save();
 
       //  return $request->all(); this anly returns the the data when the request is success;
-
-
 
        return response([
 

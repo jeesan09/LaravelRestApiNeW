@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Product;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,4 +47,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+
+
+    public function ThisUserHas_many_Product()
+    {
+      return $this->hasMany(Product::class);
+    }
 }
