@@ -38,6 +38,9 @@ class ReviewsController extends Controller
     public function ReviewBilongsto(Review $review)
     {
      /* return 'functioncalled';*/
+      
+    /*    $product= $review->productbelons;
+        return $product->user_id;// Great from here we can get the poroducts owner information through Reviews and Products relation*/
       return new ProductResource($review->productbelons);
     }
 
@@ -127,7 +130,7 @@ class ReviewsController extends Controller
           $review->rating     = $request->rating;
 
           $review->save();
-          
+
           return response([
 
             'data'=> new ReviewsResource($review)

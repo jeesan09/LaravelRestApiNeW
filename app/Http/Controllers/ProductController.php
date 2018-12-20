@@ -154,8 +154,8 @@ class ProductController extends Controller
             $product->discount= $request->Discount;
             $product->user_id= $this->logged_user->id;
 
-
             $product->save();
+            
             return response([
 
                 'data'=> new ProductResource($product)
@@ -164,14 +164,14 @@ class ProductController extends Controller
 
         }
 
-        else{
-
+        else
+        {
             return response([
 
                 'data'=> 'This is not Yours Product'
 
             ],Response::HTTP_ACCEPTED/*201*/);
-          }
+        }
 
       //  return $product;
     }
