@@ -37,6 +37,8 @@ Route::group([
 
    */
     Route::apiResource('/products','ProductController');
+    Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route
+
     
     Route::group([ 'prefix'=>'products'],function(){
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomRequest\ReviewRequest;
+use App\Http\Resources\ApiResources\ProductResource;
+use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Http\Resources\ApiResources\ReviewsResource;
 use App\Model\Product;
 use App\Model\Review;
@@ -23,7 +25,8 @@ class ReviewsController extends Controller
         //
       //  return Reviews::all();
        // return 'good Job';
-       return  $product->review_many;
+       return ReviewsResource::collection($product->review_many);
+       //return  $product->review_many;
     }
 
     /**
@@ -70,8 +73,10 @@ class ReviewsController extends Controller
      */
     public function show(Product $product, Review $review)
     {
-        //
-        return $review->productbelons;
+          //$var=$review->productbelons
+      //  return   ProductResourceCollection::collection($review->productbelons);
+        return new ProductResource($review->productbelons);
+        //return $review->productbelons;
         
     }
 

@@ -6,8 +6,12 @@ use App\Http\Requests\CustomRequest\ProductRequest;
 use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Model\Product;
+use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -23,7 +27,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-         $this->middleware('jwt.auth')->except('index','show');
+         $this->middleware('jwt.auth')->except('index','show','ProductOwner');
     }  
 
  
@@ -108,7 +112,14 @@ class ProductController extends Controller
     {
         //
     }
-
+    public function ProductOwner(Product $product)
+    {
+        //
+         $var=Auth::id();
+          return $var;
+        //return $product->id;
+        return $product->thisProductbelonsto;
+    }
     /**
      * Update the specified resource in storage.
      *

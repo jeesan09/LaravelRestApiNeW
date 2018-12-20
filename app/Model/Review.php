@@ -13,6 +13,9 @@ class Review extends Model
         return  $this->belongsTo(Product::class,'product_id');
     }
 
+
+    
+
 /*    public function product_blongs()
 	{
 	    return $this->belongsTo('App\Model\Product','id')->withDefault([

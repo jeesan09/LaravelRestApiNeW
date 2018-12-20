@@ -26,7 +26,8 @@ class ProductResourceCollection extends Resource
 
        ];*/
        return [
-            
+
+            'Id'=>$this->id,
             'Name' => $this->name,
             'Price' => $this->price,
           //  'Descripton' => $this->detail,
@@ -35,9 +36,9 @@ class ProductResourceCollection extends Resource
         //    'created_at' => $this->created_at,
         //    'updated_at' => $this->updated_at,
 
-          'href'=>[
+            'href'=>[
                 'Single-product'=>route('products.show',$this->id)
-            ]
+             ]
         ];
 
     }
