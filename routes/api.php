@@ -37,15 +37,32 @@ Route::group([
 
    */
     Route::apiResource('/products','ProductController');
-    Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route
+
 
     
     Route::group([ 'prefix'=>'products'],function(){
 
 		Route::apiResource('/{product}/reviews','ReviewsController');
-	});
+	  });
 
+
+    Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route 
+    Route::get('/ReviewID/{review}','ReviewsController@ReviewBilongsto')->name('review-of_whitch_Porduct');//particuar reviews Product
+    Route::get('/allReviews','ReviewsController@ShowALLReviews');//all Reviews
     
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
     Route::apiResource('/{product}/reviews','ReviewsController');

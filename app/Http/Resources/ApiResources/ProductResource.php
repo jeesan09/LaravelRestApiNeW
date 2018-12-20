@@ -16,6 +16,7 @@ class ProductResource extends JsonResource
     {
         return [
             'Product_ID' => $this->id,
+            'Ownet_ID' => $this->user_id,
             'Name' => $this->name,
             'Price' => $this->price,
             'Descripton' => $this->detail,
@@ -25,7 +26,7 @@ class ProductResource extends JsonResource
         //    'updated_at' => $this->updated_at,
 
             'href'=>[
-                'produtReviews'=>route('reviews.index' ,$this->id)
+                'Reviews'=>route('reviews.index' ,$this->id)
             ]
         ];
     }

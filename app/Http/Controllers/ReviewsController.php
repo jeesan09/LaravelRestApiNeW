@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomRequest\ReviewRequest;
 use App\Http\Resources\ApiResources\ProductResource;
-use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Http\Resources\ApiResources\ReviewsResource;
 use App\Model\Product;
 use App\Model\Review;
@@ -23,11 +22,25 @@ class ReviewsController extends Controller
     public function index(Product $product)
     {
         //
-      //  return Reviews::all();
+        //return ReviewsResource::collection(Reviews::all());
        // return 'good Job';
-       return ReviewsResource::collection($product->review_many);
+        return ReviewsResource::collection($product->review_many);
        //return  $product->review_many;
     }
+
+    public function ShowALLReviews()
+    {
+      // return 'functioncalled';
+      return ReviewsResource::collection(Review::all());
+    }
+
+
+    public function ReviewBilongsto(Review $review)
+    {
+     /* return 'functioncalled';*/
+      return new ProductResource($review->productbelons);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -114,9 +127,7 @@ class ReviewsController extends Controller
           $review->rating     = $request->rating;
 
           $review->save();
-
-
-
+          
           return response([
 
             'data'=> new ReviewsResource($review)

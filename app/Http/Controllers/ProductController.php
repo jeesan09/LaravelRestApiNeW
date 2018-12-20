@@ -7,10 +7,11 @@ use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Model\Product;
 use App\User;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use JWTAuth;
+
 
 
 
@@ -28,6 +29,13 @@ class ProductController extends Controller
     public function __construct()
     {
          $this->middleware('jwt.auth')->except('index','show','ProductOwner');
+
+         $token = JWTAuth::getToken();
+
+         if (!empty($token)) {
+             $user = JWTAuth::toUser($token);
+             $this->logged_user = User::find($user->id);
+         }
     }  
 
  
@@ -35,6 +43,10 @@ class ProductController extends Controller
 
     public function index()
     {
+      //  return $this->logged_user->id; //this is workin Perfectly;
+
+
+      //   JWTAuth::toUser();
        // paginate(5)
       // return Product::all();// this is also working but calling the function at productResourceCollection  
      return  ProductResourceCollection::collection(Product::orderBy('created_at', 'desc')->paginate(5));// this is also working but calling the function at productResourceCollection
@@ -70,12 +82,15 @@ class ProductController extends Controller
        // $ldate = new DateTime('now');
         //return $ldate;
       //  return $request;
+
+
         $productClassOB = new Product;
 
         $productClassOB->name = $request->Name;
         $productClassOB->price = $request->Price;
         $productClassOB->detail =$request->Descripton;
         $productClassOB->discount= $request->Discount;
+        $productClassOB->user_id= $this->logged_user->id;
 
         $productClassOB->save();
 
@@ -115,8 +130,8 @@ class ProductController extends Controller
     public function ProductOwner(Product $product)
     {
         //
-         $var=Auth::id();
-          return $var;
+        /* $var=Auth::id();
+          return $var;*/
         //return $product->id;
         return $product->thisProductbelonsto;
     }
@@ -131,17 +146,33 @@ class ProductController extends Controller
     {
         //
         //return $product;
-        $product->name = $request->Name;
-        $product->price = $request->Price;
-        $product->detail =$request->Descripton;
-        $product->discount= $request->Discount;
+        if($product->user_id == $this->logged_user->id)
+        {
+            $product->name = $request->Name;
+            $product->price = $request->Price;
+            $product->detail =$request->Descripton;
+            $product->discount= $request->Discount;
+            $product->user_id= $this->logged_user->id;
 
-        $product->save();
-        return response([
 
-            'data'=> new ProductResource($product)
+            $product->save();
+            return response([
 
-        ],Response::HTTP_OK/*201*/);
+                'data'=> new ProductResource($product)
+
+            ],Response::HTTP_OK/*201*/);
+
+        }
+
+        else{
+
+            return response([
+
+                'data'=> 'This is not Yours Product'
+
+            ],Response::HTTP_ACCEPTED/*201*/);
+          }
+
       //  return $product;
     }
 
@@ -155,12 +186,27 @@ class ProductController extends Controller
 
     {
         //
-        $product->delete();
+        if($product->user_id == $this->logged_user->id)
+        {
 
-        return response([
+            $product->delete();
 
-            'data'=> new ProductResource($product)
+            return response([
 
-        ],Response::HTTP_ACCEPTED /*201*/);
+                'data'=> new ProductResource($product)
+
+            ],Response::HTTP_ACCEPTED /*201*/);
+
+        }
+
+        else{
+
+            return response([
+
+                'data'=> 'This is not Yours Product'
+
+            ],Response::HTTP_ACCEPTED/*201*/);
+          }
+
     }
 }
