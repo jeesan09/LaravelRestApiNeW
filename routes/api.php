@@ -47,6 +47,8 @@ Route::group([
 
 
     Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route 
+    Route::get('/user_products','ProductController@Product_of_a_user');//Procucts of a single user
+
     Route::get('/ReviewID/{review}','ReviewsController@ReviewBilongsto')->name('review-of_whitch_Porduct');//particuar reviews Product
     Route::get('/allReviews','ReviewsController@ShowALLReviews');//all Reviews
     

@@ -6,11 +6,14 @@ use App\Http\Requests\CustomRequest\ProductRequest;
 use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Model\Product;
+use App\Traits\MyAuth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use JWTAuth;
+
+Use DB;
 
 
 
@@ -24,7 +27,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
+     use MyAuth;
 
     public function __construct()
     {
@@ -32,10 +35,13 @@ class ProductController extends Controller
 
          $token = JWTAuth::getToken();
 
-         if (!empty($token)) {
+         /* if (!empty($token)) {
              $user = JWTAuth::toUser($token);
              $this->logged_user = User::find($user->id);
-         }
+         }*/   //this also works and porduce the same reasult
+
+         $user = JWTAuth::toUser();
+         $this->logged_user = User::find($user->id);
     }  
 
  
@@ -43,11 +49,10 @@ class ProductController extends Controller
 
     public function index()
     {
-      //  return $this->logged_user->id; //this is workin Perfectly;
+          //  return $this->logged_user->id; //this is workin Perfectly;
 
 
-      //   JWTAuth::toUser();
-       // paginate(5)
+  
       // return Product::all();// this is also working but calling the function at productResourceCollection  
      return  ProductResourceCollection::collection(Product::orderBy('created_at', 'desc')->paginate(5));// this is also working but calling the function at productResourceCollection
 
@@ -70,6 +75,22 @@ class ProductController extends Controller
         
     }
 
+    public function Product_of_a_user()
+    {
+        //
+       // return $product;
+    //  return  $this->Current_User_ID();
+
+
+      $Current_User= $this->Current_User_ID();//Using Trait
+                   //$this->logged_user->id; With out useing Trait
+
+     $productsof=ProductResourceCollection::collection(Product::where('user_id', $Current_User)->get());
+     //DB::table('products')->where('user_id', $Current_User)->get();//this quree also works
+    return $productsof;
+
+        
+    }
     /**
      * Store a newly created resource in storage.
      *
