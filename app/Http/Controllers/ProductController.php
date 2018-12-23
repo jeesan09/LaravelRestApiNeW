@@ -33,15 +33,18 @@ class ProductController extends Controller
     {
          $this->middleware('jwt.auth')->except('index','show','ProductOwner');
 
-         $token = JWTAuth::getToken();
+          $token = JWTAuth::getToken();
 
-         /* if (!empty($token)) {
+         /*  if (!empty($token)) {
              $user = JWTAuth::toUser($token);
              $this->logged_user = User::find($user->id);
-         }*/   //this also works and porduce the same reasult
+         } */  //this also works and porduce the same reasult
 
-         $user = JWTAuth::toUser();
-         $this->logged_user = User::find($user->id);
+         if (!empty($token)) 
+         {
+             $user = JWTAuth::toUser();
+             $this->logged_user = User::find($user->id);
+         }
     }  
 
  
