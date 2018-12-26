@@ -19,6 +19,8 @@ class ReviewsResource extends JsonResource
             'Customr_Name' => $this->customer,
             'Review' => $this->review,
             'Rating' => $this->rating,
+            'Product-No' => $this->product_id,
+            'User' => $this->user_id,
 
             'href'=>[
                 'Product'=>route('review-of_whitch_Porduct' ,$this->id)

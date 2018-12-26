@@ -29,6 +29,7 @@ class ReviewRequest extends FormRequest
         'customer'  => 'required|max:255',
         'review'    => 'required|max:255',
         'rating'    => 'required|max:2',
+      //  'user_id'   =>  'required'
 
         ];
     }

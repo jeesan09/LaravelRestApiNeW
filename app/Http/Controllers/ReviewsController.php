@@ -7,13 +7,37 @@ use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ReviewsResource;
 use App\Model\Product;
 use App\Model\Review;
+use App\Traits\MyAuth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use JWTAuth;
+use App\User;
+
 
 
 
 class ReviewsController extends Controller
-{
+{   
+
+    use MyAuth;
+
+/*    public function __construct()
+    {
+         $this->middleware('jwt.auth')->except('index','show','ProductOwner');
+         $token = JWTAuth::getToken();
+
+
+           if (!empty($token)) {
+             $user = JWTAuth::toUser($token);
+             $this->logged_user = User::find($user->id);
+         }   //this also works and porduce the same reasult
+
+         if (!empty($token)) 
+         {
+             $user = JWTAuth::toUser();
+             $this->logged_user = User::find($user->id);
+         }
+    } */
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +55,7 @@ class ReviewsController extends Controller
     public function ShowALLReviews()
     {
       // return 'functioncalled';
-      return ReviewsResource::collection(Review::all());
+       return ReviewsResource::collection(Review::all());
     }
 
 
@@ -41,7 +65,7 @@ class ReviewsController extends Controller
       
     /*    $product= $review->productbelons;
         return $product->user_id;// Great from here we can get the poroducts owner information through Reviews and Products relation*/
-      return new ProductResource($review->productbelons);
+       return new ProductResource($review->productbelons);
     }
 
 
@@ -54,7 +78,14 @@ class ReviewsController extends Controller
     {
         //
     }
-
+    public function MyReviews()
+    {
+        $Current_User= $this->Current_User_ID();//Using Trait
+        //$this->logged_user->id; With out useing Trait    
+        $reviewsof=ReviewsResource::collection(Review::where('user_id', $Current_User)->get());
+         //DB::table('products')->where('user_id', $Current_User)->get();//this quree also works
+        return $reviewsof;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -63,13 +94,19 @@ class ReviewsController extends Controller
      */
     public function store(ReviewRequest $request,Product $product)
     {
-        // return $request;
+        // return $this->Current_User_ID();
        // return 'function called';
-          $reviewClassOb= new Reviews;
-          $reviewClassOb->product_id = $product->id;
-          $reviewClassOb->customer   = $request->customer;
-          $reviewClassOb->review     = $request->review; 
-          $reviewClassOb->rating     = $request->rating;
+
+          $currentUser=$this->Current_User_ID();
+        //  return $currentUser;
+
+          $reviewClassOb= new Review;
+          $reviewClassOb->product_id  =  $product->id;
+          //$this->$currentUser;//$this->Current_User_ID()->user_id;   //$this->Current_User_ID();
+          $reviewClassOb->customer    =  $request->customer;
+          $reviewClassOb->review      =  $request->review; 
+          $reviewClassOb->rating      =  $request->rating;
+          $reviewClassOb->user_id     =  $currentUser;//$request->user_id;
 
           $reviewClassOb->save();
 

@@ -51,6 +51,7 @@ Route::group([
 
     Route::get('/ReviewID/{review}','ReviewsController@ReviewBilongsto')->name('review-of_whitch_Porduct');//particuar reviews Product
     Route::get('/allReviews','ReviewsController@ShowALLReviews');//all Reviews
+    Route::get('/user_reviews','ReviewsController@MyReviews');//Reviews of single user
     
 
 

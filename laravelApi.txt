@@ -36,6 +36,7 @@ Schema::defaultStringLength(191);
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 01--https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US
 02- SUBLINE:php companion;
+03 - Add a new Coulum in existing Table = https://stackoverflow.com/questions/16791613/add-a-new-column-to-existing-table-in-a-migration
 
 --------------------------------------------------------------------------------------===============================+++++++==================================----------------------------------------------------------------------------
 

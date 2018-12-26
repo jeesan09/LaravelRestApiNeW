@@ -1,6 +1,7 @@
 <?php
 
 use App\Model\Product;
+use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(App\Model\Review::class, function (Faker $faker) {
@@ -14,6 +15,11 @@ $factory->define(App\Model\Review::class, function (Faker $faker) {
             'product_id' => function () 
              {
              return Product::all()->random();
+             },
+
+             'user_id' => function () 
+             {
+             return User::all()->random();
              }
              /*
               git Pull Origin Master(){

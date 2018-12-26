@@ -32,8 +32,8 @@ class ProductController extends Controller
     public function __construct()
     {
          $this->middleware('jwt.auth')->except('index','show','ProductOwner');
+         $token = JWTAuth::getToken();
 
-          $token = JWTAuth::getToken();
 
          /*  if (!empty($token)) {
              $user = JWTAuth::toUser($token);
@@ -85,10 +85,9 @@ class ProductController extends Controller
     //  return  $this->Current_User_ID();
 
 
-      $Current_User= $this->Current_User_ID();//Using Trait
-                   //$this->logged_user->id; With out useing Trait
-
-     $productsof=ProductResourceCollection::collection(Product::where('user_id', $Current_User)->get());
+    $Current_User= $this->Current_User_ID();//Using Trait
+    //$this->logged_user->id; With out useing Trait    
+    $productsof=ProductResourceCollection::collection(Product::where('user_id', $Current_User)->get());
      //DB::table('products')->where('user_id', $Current_User)->get();//this quree also works
     return $productsof;
 
@@ -110,11 +109,11 @@ class ProductController extends Controller
 
         $productClassOB = new Product;
 
-        $productClassOB->name = $request->Name;
-        $productClassOB->price = $request->Price;
-        $productClassOB->detail =$request->Descripton;
-        $productClassOB->discount= $request->Discount;
-        $productClassOB->user_id= $this->logged_user->id;
+        $productClassOB->name    =$request->Name;
+        $productClassOB->price   =$request->Price;
+        $productClassOB->detail  =$request->Descripton;
+        $productClassOB->discount=$request->Discount;
+        $productClassOB->user_id =$this->logged_user->id;
 
         $productClassOB->save();
 
@@ -182,20 +181,20 @@ class ProductController extends Controller
             
             return response([
 
-                'data'=> new ProductResource($product)
+            'data'=> new ProductResource($product)
 
             ],Response::HTTP_OK/*201*/);
 
         }
 
-        else
-        {
+            else
+            {
             return response([
 
                 'data'=> 'This is not Yours Product'
 
             ],Response::HTTP_ACCEPTED/*201*/);
-        }
+            }
 
       //  return $product;
     }
