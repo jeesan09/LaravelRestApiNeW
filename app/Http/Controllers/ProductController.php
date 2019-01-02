@@ -106,7 +106,7 @@ class ProductController extends Controller
         //return $ldate;
       //  return $request;
 
-
+        //return $request;
         $productClassOB = new Product;
 
         $productClassOB->name    =$request->Name;
@@ -168,7 +168,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
-        //return $product;
+       // return $request;
         if($product->user_id == $this->logged_user->id)
         {
             $product->name = $request->Name;
