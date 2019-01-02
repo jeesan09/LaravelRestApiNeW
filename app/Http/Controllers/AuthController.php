@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -85,15 +86,37 @@ class AuthController extends Controller
         ]);
     }
 
+/*    protected function validator(Request $req)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'type'   =>['required','string'],
+        ]);
+    }*/
+
     protected function create(Request $req)
     {
         //return $req;
-        return User::create([
+        $validator = Validator::make($req->all(), [
+            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required',
+            'type'   =>['required','string'],
+            'password'=> 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+       $dataToResponse=User::create([
             'name' => $req['name'],
             'email' => $req['email'],
             'type'=>$req['type'],
             'password' => Hash::make($req['password']),
         ]);
+
+       return response()->json($dataToResponse);
     }
 
 }
