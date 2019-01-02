@@ -32,7 +32,23 @@ trait MyAuth
 
     }
 
+    public function Current_User_Type(){
 
+       
+        $user=JWTAuth::toUser();
+
+        return $user->type;
+
+    }
+
+     public function Current_User(){
+
+       
+        $user=JWTAuth::toUser();
+
+        return $user;
+
+    }   
 
 
 }

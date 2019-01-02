@@ -8,10 +8,11 @@ use App\Http\Resources\ApiResources\ReviewsResource;
 use App\Model\Product;
 use App\Model\Review;
 use App\Traits\MyAuth;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use JWTAuth;
-use App\User;
 
 
 
@@ -21,23 +22,11 @@ class ReviewsController extends Controller
 
     use MyAuth;
 
-/*    public function __construct()
+    public function __construct()
     {
-         $this->middleware('jwt.auth')->except('index','show','ProductOwner');
-         $token = JWTAuth::getToken();
-
-
-           if (!empty($token)) {
-             $user = JWTAuth::toUser($token);
-             $this->logged_user = User::find($user->id);
-         }   //this also works and porduce the same reasult
-
-         if (!empty($token)) 
-         {
-             $user = JWTAuth::toUser();
-             $this->logged_user = User::find($user->id);
-         }
-    } */
+         $this->middleware('jwt.auth')->except('index');
+        
+    } 
     /**
      * Display a listing of the resource.
      *
@@ -48,14 +37,28 @@ class ReviewsController extends Controller
         //
         //return ReviewsResource::collection(Reviews::all());
        // return 'good Job';
+
+
+
         return ReviewsResource::collection($product->review_many);
        //return  $product->review_many;
     }
 
     public function ShowALLReviews()
     {
-      // return 'functioncalled';
-       return ReviewsResource::collection(Review::all());
+
+        $user=$this->Current_User();
+        if (Gate::allows('admin-gate',$user)) {
+
+                  // The current user can update the post...
+                 //  abort(404,"this route is also accessable for Admins");
+                // return $this->Current_User_Type();              //Current_User_Type;
+ 
+         return ReviewsResource::collection(Review::all());
+        }
+
+        return 'this route is not allowed without  Admin';
+
     }
 
 

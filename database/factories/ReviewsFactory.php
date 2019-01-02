@@ -8,7 +8,7 @@ $factory->define(App\Model\Review::class, function (Faker $faker) {
     return [
         //
             'customer'=>$faker->name,
-          //  'price'=>$faker->numberBetween(100,1000),
+          // 'price'=>$faker->numberBetween(100,1000),
             'review'=>$faker->paragraph,
             'rating'=>$faker->numberBetween(1,5),
 
