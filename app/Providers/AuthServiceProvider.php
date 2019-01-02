@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use App\Policies\MyPolicy;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        User::class => MyPolicy::class,
+
+
     ];
 
     /**
@@ -25,24 +30,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         //
-        Gate::define('admin-gate', function ($user) {
+        Gate::define('admin-gate','App\Policies\MyPolicy@adminPolicy');//Using Policy
+        Gate::define('superAdmin-gate','App\Policies\MyPolicy@superAdminPolicy');
+        Gate::define('user-gate','App\Policies\MyPolicy@userPolicy');
 
-            if($user->type == 'admin')
-            {
-                return true;
-
-            }
-
-                return false;
-        });
-
+/*      Not Using Policy
         Gate::define('superAdmin-gate', function ($user) {
         return $user->type == 'superAdmin';
         });
 
         Gate::define('user-gate', function ($user) {
         return $user->type == 'user';
-        });
+        });*/
 
     }
 }

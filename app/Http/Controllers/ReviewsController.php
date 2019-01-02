@@ -48,7 +48,7 @@ class ReviewsController extends Controller
     {
 
         $user=$this->Current_User();
-        if (Gate::allows('admin-gate',$user)) {
+        if (Gate::allows('superAdmin-gate',$user)) {
 
                   // The current user can update the post...
                  //  abort(404,"this route is also accessable for Admins");
@@ -57,7 +57,7 @@ class ReviewsController extends Controller
          return ReviewsResource::collection(Review::all());
         }
 
-        return 'this route is not allowed without  Admin';
+        return 'this route is not allowed without  Super-Admin';
 
     }
 
