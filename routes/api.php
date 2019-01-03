@@ -26,17 +26,18 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
-});
+});//all these route is assosiate to User Login through jwt authentication
 
     /*
-
     Route::group(['middleware' => ['jwt.auth']], function() {
 
        Route::apiResource('/products','ProductController');
         
     });
 
-   */
+   */ //this is only for logged in users-->this route also working perfectly.
+
+
     Route::apiResource('/products','ProductController');
 
 
@@ -44,7 +45,7 @@ Route::group([
     Route::group([ 'prefix'=>'products',/*'middleware' =>'can:superAdmin-gate'*/],function(){
 
 		Route::apiResource('/{product}/reviews','ReviewsController');
-	  });//this route is woking prefectly with 'middleware' =>'can:superAdmin-gate'
+	  });//this route is woking prefectly with 'middleware' =>'can:superAdmin-gate'-->to set a super admin user type middlewere.
 
 
     Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route 
@@ -56,7 +57,7 @@ Route::group([
     Route::get('/user_reviews',[//'ReviewsController@MyReviews'
          'uses' => 'ReviewsController@MyReviews',
          'middleware' => 'can:admin-gate',
-    ]);// single user has how many reviews//also working with Router MiddleWere
+    ]);// single user has how many reviews//also working with Router MiddleWere-->admin middlewere set to this route.
     
 
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomRequest\ProductRequest;
 use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ProductResourceCollection;
+use App\Lib\FileUpload;
 use App\Model\Product;
 use App\Traits\MyAuth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use JWTAuth;
 
 Use DB;
@@ -99,14 +101,28 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
       //  return 'function called';
        // $ldate = new DateTime('now');
         //return $ldate;
-      //  return $request;
+      
+       //return $request->all();
 
-        //return $request;
+       if ($request->has('imag')) {
+           $file = $request->file('imag');
+           $imgname=sha1(time()) . '.' . $file->getClientOriginalExtension();
+
+          // return $file->getClientOriginalName();returns original file name;
+           $request->imag->store('public/products_image');
+
+           return Storage::url($imgname);
+           return $imgname;
+       }
+        
+       
+
+       // return $request->all();
         $productClassOB = new Product;
 
         $productClassOB->name    =$request->Name;

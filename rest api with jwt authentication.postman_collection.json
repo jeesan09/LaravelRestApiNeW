@@ -1,0 +1,461 @@
+{
+	"variables": [],
+	"info": {
+		"name": "rest api with jwt authentication",
+		"_postman_id": "1108d759-6bf6-bc8b-1623-5fa7b0dce741",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"description": "",
+			"item": [
+				{
+					"name": "UserLogin",
+					"request": {
+						"url": "http://localhost:8000/api/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "",
+								"value": "",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "jeesan09iu@gmail.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "jeesan09",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "MeFunction",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8000/api/auth/me?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NDY5MzI4MywiZXhwIjoxNTQ0Njk2ODgzLCJuYmYiOjE1NDQ2OTMyODMsImp0aSI6IlMwb1Zoa1dGTjJwbUNGN1YiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.BkE6tfpUXR7FeZPup4PL9K2RcP5OsAqEZXqsbZ5P_Vg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NDY5MzI4MywiZXhwIjoxNTQ0Njk2ODgzLCJuYmYiOjE1NDQ2OTMyODMsImp0aSI6IlMwb1Zoa1dGTjJwbUNGN1YiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.BkE6tfpUXR7FeZPup4PL9K2RcP5OsAqEZXqsbZ5P_Vg",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NDY5MzI4MywiZXhwIjoxNTQ0Njk2ODgzLCJuYmYiOjE1NDQ2OTMyODMsImp0aSI6IlMwb1Zoa1dGTjJwbUNGN1YiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.BkE6tfpUXR7FeZPup4PL9K2RcP5OsAqEZXqsbZ5P_Vg ",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "userRegister",
+					"request": {
+						"url": "http://localhost:8000/api/auth/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NjQyMzI0MywiZXhwIjoxNTQ2NDU5MjQzLCJuYmYiOjE1NDY0MjMyNDMsImp0aSI6ImJTYVJMNnZHc0t0czlLTHUiLCJzdWIiOjIyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.dUdD-_Dezcf2bjwdHSXVxGJHt_7GhO0K82AUoq0GJA0",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"name\":\"jefffdddddddddddnff\",\n\t\"email\": \"jeesan11171112111@gmail.com\",\n\t\"type\": \"user\",\n\t\n\n\t\"password\": \"123456\"\n\n\t\n\t\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"description": "",
+			"item": [
+				{
+					"name": "ProductCreate",
+					"request": {
+						"url": "http://localhost:8000/api/products",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTA0ODA0MiwiZXhwIjoxNTQ1MDUxNjQyLCJuYmYiOjE1NDUwNDgwNDIsImp0aSI6Ik5BbmdMd08yQnNRblg4OXciLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.K9_yY56SnGIQCa4bnTcDGxI1mRXi0Y8Xt_pBo6UcNRY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\":\"jefffffffgdgdgdddddddddddddnff\",\n\t\"Price\": 17000,\n\t\"Descripton\": \"sdfgsdfgsfgsdfgsdfg\",\n    \"Discount\": 17\n\t\n\t\n\t\n\t\n}"
+						},
+						"description": "ProductCreate"
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Update",
+					"request": {
+						"url": "http://localhost:8000/api/products/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTEwNjE2NSwiZXhwIjoxNTQ1MTA5NzY1LCJuYmYiOjE1NDUxMDYxNjUsImp0aSI6InVCdlFGaVV0Ykowc0FBMUwiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.iCnDfBatW791pMqUXcKssUtmENZmxf2SsCfeQ6FySdQ",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\":\"jefffffffgdgdgdddddddddddddnff-------Updated data----secoend---time\",\n\t\"Price\": 17000,\n\t\"Descripton\": \"sdfgsdfgsfgsdfgsdfg\",\n    \"Discount\": 17\n\t\n\t\n\t\n\t\n}"
+						},
+						"description": "ProductUPdatae"
+					},
+					"response": []
+				},
+				{
+					"name": "Product_Delete",
+					"request": {
+						"url": "http://localhost:8000/api/products/4",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTEwNjE2NSwiZXhwIjoxNTQ1MTA5NzY1LCJuYmYiOjE1NDUxMDYxNjUsImp0aSI6InVCdlFGaVV0Ykowc0FBMUwiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.iCnDfBatW791pMqUXcKssUtmENZmxf2SsCfeQ6FySdQ",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "ProductDElete"
+					},
+					"response": []
+				},
+				{
+					"name": "All--Products",
+					"request": {
+						"url": "http://localhost:8000/api/products",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ProductOwner",
+					"request": {
+						"url": "http://localhost:8000/api/product_owner/12",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Reviews-of-a-SIngle_Product",
+					"request": {
+						"url": "http://localhost:8000/api/products/4/reviews",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Single-Product",
+					"request": {
+						"url": "http://localhost:8000/api/products/5",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTU1MTU5OSwiZXhwIjoxNTQ1NTU1MTk5LCJuYmYiOjE1NDU1NTE1OTksImp0aSI6IjlyYU4xU1g0Z0RZa2pHNVEiLCJzdWIiOjgxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.Lnw_gfT6Vilg2ExhGzdd46rhqNDPt_C-hDL8jX0-TgA",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\":\"j\",\n\t\"Price\": 17000,\n\t\"Descripton\": \"sdfgsdfgsfgsdfgsdfg\",\n    \"Discount\": 17\n\t\n\t\n\t\n\t\n}"
+						},
+						"description": "Product Showing"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"description": "",
+			"item": [
+				{
+					"name": "review Create",
+					"request": {
+						"url": "http://localhost:8000/api/products/1/reviews",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTExNTUxNiwiZXhwIjoxNTQ1MTE5MTE2LCJuYmYiOjE1NDUxMTU1MTYsImp0aSI6Ikt5cXVZUWlTTEFMdzJIdEoiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.qkV6WUYh5Q445ywUL94j_0b_AYTYUkj4Is5A6mrEJEo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\n\t\"customer\":\"jefffffffgdgdgdopuipiouiooooooopuiddddddddddddnff\",\n\t\"review\": \"ddddddddddddddddddddddddd\",\n    \"rating\": 1\t\n\t\n\t\n}"
+						},
+						"description": "review create"
+					},
+					"response": []
+				},
+				{
+					"name": "Review Update",
+					"request": {
+						"url": "http://localhost:8000/api/products/1/reviews/12",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTExNTUxNiwiZXhwIjoxNTQ1MTE5MTE2LCJuYmYiOjE1NDUxMTU1MTYsImp0aSI6Ikt5cXVZUWlTTEFMdzJIdEoiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.qkV6WUYh5Q445ywUL94j_0b_AYTYUkj4Is5A6mrEJEo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\n\t\"customer\":\"my name is jeesan dddddddnff\",\n\t\"review\": \"ddddddddddddddddd Update working Perfectly\",\n    \"rating\": 5\n\t\n\t\n}"
+						},
+						"description": "review create"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Single Review",
+					"request": {
+						"url": "http://localhost:8000/api/products/1/reviews/303",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTExNTUxNiwiZXhwIjoxNTQ1MTE5MTE2LCJuYmYiOjE1NDUxMTU1MTYsImp0aSI6Ikt5cXVZUWlTTEFMdzJIdEoiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.qkV6WUYh5Q445ywUL94j_0b_AYTYUkj4Is5A6mrEJEo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\n\t\"customer\":\"jefffffffgdgdgdopuipiouiooooooopuiddddddddddddnff\",\n\t\"review\": \"Updated via Review Resource\",\n    \"rating\": 5\n\t\n\t\n}"
+						},
+						"description": "get a single Review"
+					},
+					"response": []
+				},
+				{
+					"name": "Porduct of A Review",
+					"request": {
+						"url": "http://localhost:8000/api/products/12/reviews",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "returns a particuar Poduct from the review ID"
+					},
+					"response": []
+				},
+				{
+					"name": "All Review",
+					"request": {
+						"url": "http://localhost:8000/api/allReviews",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NjQyNjM0NywiZXhwIjoxNTQ2NDYyMzQ3LCJuYmYiOjE1NDY0MjYzNDcsImp0aSI6ImJ0aWg1RW9KSkczRGt0eVciLCJzdWIiOjI4LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.b2G1fCp0qAsGjJSd3eB3B-7DfGt5TierMCnI4w3nD_8",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User_Routes",
+			"description": "",
+			"item": [
+				{
+					"name": "Your_Products",
+					"request": {
+						"url": "http://localhost:8000/api/user_products",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTU0MDcxMywiZXhwIjoxNTQ1NTQ0MzEzLCJuYmYiOjE1NDU1NDA3MTMsImp0aSI6IkVrYUtXRUtKNUpTRzRVamwiLCJzdWIiOjgxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.rY1J0ICY9HmnD4iDuqVnr_a-sMXHf36QIgMFPJ6RzXE",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Your_Reviews",
+					"request": {
+						"url": "http://localhost:8000/api/user_reviews ",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTgxMzQ3NCwiZXhwIjoxNTQ1ODQ5NDc0LCJuYmYiOjE1NDU4MTM0NzQsImp0aSI6Im9oajFZRzA5VDdTY1hkbjIiLCJzdWIiOjIxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.sW_RFbPj8xJh5PJCJ22HuHcIFKu1QCPzBcuu4eDECEM",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
