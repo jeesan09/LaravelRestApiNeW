@@ -114,9 +114,9 @@ class ProductController extends Controller
            $imgname=sha1(time()) . '.' . $file->getClientOriginalExtension();
 
          // return $file->getClientOriginalName();returns original file name;
-          $request->imag->store('public/products_image');//working
+         // $request->imag->store('public/DB');//working
 
-         //  $request->imag->storeAs('public','jeesan3.png');
+           $request->imag->storeAs('public/DB',$imgname);
 //  Storage::putFile('public/products_image_secoend_method',$request->file('imag'));//working
 
           // return Storage::url($imgname);
@@ -147,13 +147,15 @@ class ProductController extends Controller
     }
 
 
-    public function show_Product()
-    {
-        $url=('storage/products_image/6T40UsOKo0DHWILNrjitSpkyxE0OWH9NOqKSPx0o.png');
+    public function show_Product(Product $product)
+    {   
+        $productName = $product->product_img;
+
+        $url=('/storage/DB/').$productName;
         return "<img src='".$url."' />";// this also woking
 
-       /* $url=Storage::url('jeesan3.png');
-        return "<img src='".$url."' />";// working Fine*/
+/*        $url=Storage::url('jeesan3.png');
+        return "<img src='".$url."' />";*/// working Fine
     } 
 
     /**
