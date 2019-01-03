@@ -19,6 +19,7 @@ class ProductResource extends JsonResource
             'Owner_ID' => $this->user_id,
             'Name' => $this->name,
             'Price' => $this->price,
+            'Image'=> $this->product_img,
             'Descripton' => $this->detail,
             'Discount' => $this->discount,
             'Rating'=>$this->review_many->count() > 0 ? round($this->review_many->sum('rating')/$this->review_many->count(),1) : 'no rating Still Now',

@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-         $this->middleware('jwt.auth')->except('index','show','ProductOwner');
+         $this->middleware('jwt.auth')->except('index','show','ProductOwner','show_Product');
          $token = JWTAuth::getToken();
 
 
@@ -108,28 +108,32 @@ class ProductController extends Controller
         //return $ldate;
       
        //return $request->all();
-
+     //  $imgname='auto';
        if ($request->has('imag')) {
            $file = $request->file('imag');
            $imgname=sha1(time()) . '.' . $file->getClientOriginalExtension();
 
-          // return $file->getClientOriginalName();returns original file name;
-           $request->imag->store('public/products_image');
+         // return $file->getClientOriginalName();returns original file name;
+          $request->imag->store('public/products_image');//working
 
-           return Storage::url($imgname);
-           return $imgname;
+         //  $request->imag->storeAs('public','jeesan3.png');
+//  Storage::putFile('public/products_image_secoend_method',$request->file('imag'));//working
+
+          // return Storage::url($imgname);
+           //return $imgname;
        }
         
-       
+      // return $imgname;
 
        // return $request->all();
         $productClassOB = new Product;
 
-        $productClassOB->name    =$request->Name;
-        $productClassOB->price   =$request->Price;
-        $productClassOB->detail  =$request->Descripton;
-        $productClassOB->discount=$request->Discount;
-        $productClassOB->user_id =$this->logged_user->id;
+        $productClassOB->name        =$request->name;
+        $productClassOB->price       =$request->price;
+        $productClassOB->detail      =$request->detail;
+        $productClassOB->discount    =$request->discount;
+        $productClassOB->product_img =$imgname;
+        $productClassOB->user_id     =$this->logged_user->id;
 
         $productClassOB->save();
 
@@ -141,6 +145,16 @@ class ProductController extends Controller
 
         ], Response::HTTP_CREATED );
     }
+
+
+    public function show_Product()
+    {
+        $url=('storage/products_image/6T40UsOKo0DHWILNrjitSpkyxE0OWH9NOqKSPx0o.png');
+        return "<img src='".$url."' />";// this also woking
+
+       /* $url=Storage::url('jeesan3.png');
+        return "<img src='".$url."' />";// working Fine*/
+    } 
 
     /**
      * Display the specified resource.
@@ -166,6 +180,8 @@ class ProductController extends Controller
     {
         //
     }
+
+
     public function ProductOwner(Product $product)
     {
         //

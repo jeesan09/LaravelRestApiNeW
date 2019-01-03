@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTypeToUsersTable extends Migration
+class AddProductImgToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddTypeToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-           //  $table->string('type')->nullable()->after('email');  //need to uncomment before rollBack
+        Schema::table('products', function (Blueprint $table) {
+            //
+             $table->string('product_img')->nullable()->after('discount');
         });
     }
 
@@ -25,9 +26,9 @@ class AddTypeToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             //
-           // $table->dropColumn('type'); //need to uncomment before rollBack
+             $table->string('product_img')->nullable()->after('discount');
         });
     }
 }
