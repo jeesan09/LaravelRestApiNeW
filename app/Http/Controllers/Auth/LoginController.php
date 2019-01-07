@@ -47,6 +47,7 @@ class LoginController extends Controller
     }
 
 
+
 //-------------Solcialite funtions------------//
     /**
      * Redirect the user to the GitHub authentication page.
@@ -106,23 +107,7 @@ class LoginController extends Controller
             return $this->respondWithToken($token);*/
            else
                {
-                $userInfo = User::where('email', '=', $userEmail)->first();
-            
-                    //return $userInfo;
-                    /* $credentials = [
-                        'email' => $user->email, 
-                        'password' =>$userInfo->passward
-                    ];*/  //currently Not working whih is but it works;
-                   //$credentials;JWTAuth::fromUser($user)//JWTAuth::attempt($credentials)
-                      if (! $token = JWTAuth::fromUser($userInfo)) {
-                                    return response()->json(['error' => 'invalid_credentials'], 401);
-                                }
-
-                    return $token;
-                    //return $this->respondWithToken($token);
-
-                     // return $user->email;
-                      return 'user already exist';
+                          return $this->loginWithGoogle_Via_Jwt($userEmail);
 
                }
 
@@ -134,5 +119,26 @@ class LoginController extends Controller
 
     }
 
+        public function loginWithGoogle_Via_Jwt($userEmail){
 
+                            //return $userEmail;
+                            $userInfo = User::where('email', '=', $userEmail)->first();
+                    
+                            //return $userInfo;
+                            /* $credentials = [
+                                'email' => $user->email, 
+                                'password' =>$userInfo->passward
+                            ];*/  //currently Not working whih is but it works;
+                           //$credentials;JWTAuth::fromUser($user)//JWTAuth::attempt($credentials)
+                              if (! $token = JWTAuth::fromUser($userInfo)) {
+                                            return response()->json(['error' => 'invalid_credentials'], 401);
+                                        }
+
+                              return $token;
+                            //return $this->respondWithToken($token);
+
+                             // return $user->email;
+                              return 'user already exist';
+
+          }
 }
