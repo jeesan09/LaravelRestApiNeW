@@ -37,16 +37,18 @@ class ProductController extends Controller
          $token = JWTAuth::getToken();
 
 
-         /*  if (!empty($token)) {
+/*           if (!empty($token)) {
              $user = JWTAuth::toUser($token);
              $this->logged_user = User::find($user->id);
-         } */  //this also works and porduce the same reasult
-
+         }   //this also works and porduce the same reasult
+*/
          if (!empty($token)) 
          {
              $user = JWTAuth::toUser();
              $this->logged_user = User::find($user->id);
          }
+
+       
     }  
 
  
@@ -88,7 +90,7 @@ class ProductController extends Controller
 
 
     $Current_User= $this->Current_User_ID();//Using Trait
-    //$this->logged_user->id; With out useing Trait    
+    //$this->logged_user->id;// With out useing Trait    
     $productsof=ProductResourceCollection::collection(Product::where('user_id', $Current_User)->get());
      //DB::table('products')->where('user_id', $Current_User)->get();//this quree also works
     return $productsof;

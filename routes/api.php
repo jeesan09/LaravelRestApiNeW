@@ -60,21 +60,13 @@ Route::group([
     ]);// single user has how many reviews//also working with Router MiddleWere-->admin middlewere set to this route.
     
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
     Route::apiResource('/{product}/reviews','ReviewsController');
  }); // this is the way of Putting MiddleWere inside Routing*/
+
+/* //------------Socialite--------//
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');*/
 
 

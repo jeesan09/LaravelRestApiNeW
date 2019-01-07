@@ -29,7 +29,7 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        return $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -102,7 +102,7 @@ class AuthController extends Controller
         $validator = Validator::make($req->all(), [
             'email' => 'required|string|email|max:255|unique:users',
             'name' => 'required',
-            'type'   =>['required','string'],
+         //   'type'   =>['required','string'],
             'password'=> 'required'
         ]);
         if ($validator->fails()) {
