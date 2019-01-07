@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Contracts\Encryption\decrypt;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Socialite;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
+use Socialite;
+;
 
 class LoginController extends Controller
 {
@@ -65,7 +66,7 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->stateless()->user();
-
+       
          if(!$user->token){
 
 
@@ -78,10 +79,11 @@ class LoginController extends Controller
                  $userEmail=$user->email;
                  $userEmail_Reasult= User::where('email', '=', $userEmail)->first(); 
                  $defaute_Type='User';
+                 $passward= str_random(4);
 
                  if(!$userEmail_Reasult)
                  {
-                        $passward= str_random(4);
+                        
                         $dataToResponse=User::create([
                             'name' => $user->name,
                             'email' => $user->email,
@@ -104,23 +106,20 @@ class LoginController extends Controller
             return $this->respondWithToken($token);*/
            else
                {
-                    // $userData = User::where('email', $user->email)->first();
-                    // if (!$userToken=JWTAuth::fromUser($user)) {
-                    //     return response()->json(['error' => 'invalid_credentials'], 401);
-                    // }
-                    // return "error";
-                   $passward='9bHn';
-                   $credentials = [
+                $userInfo = User::where('email', '=', $userEmail)->first();
+            
+                    //return $userInfo;
+                    /* $credentials = [
                         'email' => $user->email, 
-                        'password' => $passward
-                    ];
-                   //$credentials;
-                      if (! $token = JWTAuth::attempt($credentials)) {
+                        'password' =>$userInfo->passward
+                    ];*/  //currently Not working whih is but it works;
+                   //$credentials;JWTAuth::fromUser($user)//JWTAuth::attempt($credentials)
+                      if (! $token = JWTAuth::fromUser($userInfo)) {
                                     return response()->json(['error' => 'invalid_credentials'], 401);
                                 }
 
                     return $token;
-                    return $this->respondWithToken($token);
+                    //return $this->respondWithToken($token);
 
                      // return $user->email;
                       return 'user already exist';
