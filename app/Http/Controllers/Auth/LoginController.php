@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendEmailMailable;
+use App\Mail\User_Welcome;
 use App\User;
-
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use JWTAuth;
 use Socialite;
 ;
@@ -79,30 +80,31 @@ class LoginController extends Controller
                  $userEmail_Reasult= User::where('email', '=', $userEmail)->first(); 
                  $defaute_Type='user';
                  $passward= str_random(4);
+                 $userName = $user->name;
 
                  if(!$userEmail_Reasult)
                      {
-                            $userName = $user->name;
+                            
 
-                         return $this->sungUP_Via_Jwt($userEmail,$userName,$defaute_Type,$passward);
-
-                        /*  $dataToResponse=User::create([
+                  return $this->sungUP_Via_Jwt($userEmail,$userName,$defaute_Type,$passward);
+                       
+/*                          $dataToResponse=User::create([
                                 'name' => $user->name,
                                 'email' => $user->email,
                                 'type'=>$defaute_Type,
                                 'password' => Hash::make($passward),
                             ]);
 
-                           return response()->json($passward);
-                                 */  //it Works
+                           return response()->json($passward);*/
+                                   //it Works
                                  
                  
                      }   
                 
 
-                else
-                   {
-                              return $this->loginWithGoogle_Via_Jwt($userEmail);
+                   else
+                   {          
+                        return $this->loginWithGoogle_Via_Jwt($userEmail,$passward,$userName);
 
                    }
 
@@ -126,37 +128,48 @@ class LoginController extends Controller
                             'password' => Hash::make($passward),
                         ]);
 
-                       return response()->json($passward);
+                     // Mail::to($userEmail)->send(new SendEmailMailable());//normal Mail
+               Mail::to($userEmail)->send(new User_Welcome($passward,$userName));
+                       
+           //  return response()->json($passward);
 
 
        }
 
 
 
-        public function loginWithGoogle_Via_Jwt($userEmail){
-
+        public function loginWithGoogle_Via_Jwt($userEmail,$userPassward,$userName){
+                          //  return $userPassward;
                             //return $userEmail;
                             $userInfo = User::where('email', '=', $userEmail)->first();
-                    
+                            
                             //return $userInfo;
                             /* $credentials = [
                                 'email' => $user->email, 
                                 'password' =>$userInfo->passward
                             ];*/  //currently Not working whih is but it works;
-                           //$credentials;JWTAuth::fromUser($user)//JWTAuth::attempt($credentials)
+
+                                           //JWTAuth::attempt($credentials)
                               if (! $token = JWTAuth::fromUser($userInfo)) {
                                             return response()->json(['error' => 'invalid_credentials'], 401);
                                         }
-
+  
+  // Mail::to($userEmail)->send(new User_Welcome($userPassward,$userName));//woking        
                               return $token;
                             //return $this->respondWithToken($token);
 
                              // return $user->email;
                               return 'user already exist';
 
+
           }
 
 
-
+/*MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=jeesan09iub@gmail.com
+MAIL_PASSWORD=jeesan09
+MAIL_ENCRYPTION=tls*/ //realmail from server;
 
 }
