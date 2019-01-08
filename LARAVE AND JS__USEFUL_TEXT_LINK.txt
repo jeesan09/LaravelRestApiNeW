@@ -1,0 +1,110 @@
+
+                                                                                                            LARAVEL TIPS
+
+MODELS NAME-----SHOULD BE IN SINGULAR FORM............AS (REVIEWS)............WRONG THIS SHOULD BE (REVIEW); 
+
+
+01-database seeder for each model
+
+1.$ php artisan make:seeder  UsersTableSeeder
+1.1--factory(App\Article::class,50)->create();
+-------------------------
+02-command to eaxicute dummy data
+
+1. php artisan db:seed;
+--------------------------------
+03-creare resource for each model
+
+1.php artisan make:resource User
+
+--------------------------------------
+04-insert Http/Request in Controller
+
+1.use Illuminate\Http\Request;
+
+-------------------------------------------
+05-Database Migraton Problem----in (Proviers) inside (AppServiceProvider)\
+
+use Illuminate\Support\Facades\Schema;
+Schema::defaultStringLength(191);
+------------------------------------------
+
+06-https://kirankoduru.github.io/python/sublime-text-ninja.html //subline ShortCut
+
+
+07-sql practice
+1.http://www.sql-ex.ru/learn_exercises.php?LN=1
+
+--------------------------------------------------------
+08-JWT set up link
+https://blog.pusher.com/laravel-jwt/
+
+09-Controller Create
+$ php artisan make:controller BookController --api...
+
+
+09----------------------------
+contol+p ----page scarch.
+control+f-----content scarch.
+
+10.----------
+laravelVue form----https://github.com/cretueusebiu/vform
+
+11. sweetnotification-------- https://sweetalert2.github.io/#download
+
+--------------------------------------------------------------------------------------===============================+++++++==================================----------------------------------------------------------------------------
+
+
+                                                                                                              GIT CLONE A NEW PROJECT ...
+
+A. Laravel
+
+1- comoser install
+2- cp .env.example .env / For create Env
+3- php artisan key:generate
+4- php artisan jwt:secret
+
+--------------------------------------------@@---------------------------------------------------
+B.Angular or Any JS
+
+1-$ npm install npm@latest -g
+2- npm install
+
+---------------
+
+-----------------------------
+inside :app.module.ts
+import { MatExpansionModule } from '@angular/material';
+
+
+------------------------------------------
+npm installation problem
+
+npm i -g npm@latest.
+npm cache clean -f
+npm install -g npm
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                    ANGULAR TEXT
+
+
+ng new AppName
+npm install -g @angular/cli
+ng add @angular/material
+
+----if Problem---------
+ng update @angular/cli
+-----------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                  USEFULRESOURCES
+Vedio--Use keyword (       https://www.youtube.com/watch?v=V0CtmYaSju8          )
+vedio-Jwt          (       https://www.youtube.com/watch?v=l201RSQ7Ti4          )
+
+07-access token Crome Extention
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+01--https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US
+02- SUBLINE:php companion;
+03 - Add a new Coulum in existing Table = https://stackoverflow.com/questions/16791613/add-a-new-column-to-existing-table-in-a-migration

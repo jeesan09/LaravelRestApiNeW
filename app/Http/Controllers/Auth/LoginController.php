@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Contracts\Encryption\decrypt;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Crypt;
+
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use Socialite;
@@ -46,8 +46,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-
 //-------------Solcialite funtions------------//
     /**
      * Redirect the user to the GitHub authentication page.
@@ -79,37 +77,34 @@ class LoginController extends Controller
          {
                  $userEmail=$user->email;
                  $userEmail_Reasult= User::where('email', '=', $userEmail)->first(); 
-                 $defaute_Type='User';
+                 $defaute_Type='user';
                  $passward= str_random(4);
 
                  if(!$userEmail_Reasult)
-                 {
-                        
-                        $dataToResponse=User::create([
-                            'name' => $user->name,
-                            'email' => $user->email,
-                            'type'=>$defaute_Type,
-                            'password' => Hash::make($passward),
-                        ]);
+                     {
+                            $userName = $user->name;
 
-                       return response()->json($passward);
-                             
-                             
-             
-                 }   
-            
-    /*        $credentials = [$user->email, 'nFQvqKjM'];
-           // return $credentials;
-            if (! $token = auth()->attempt($credentials)) {
-                return response()->json(['error' => 'Unauthorized'], 401);
-            }
+                         return $this->sungUP_Via_Jwt($userEmail,$userName,$defaute_Type,$passward);
 
-            return $this->respondWithToken($token);*/
-           else
-               {
-                          return $this->loginWithGoogle_Via_Jwt($userEmail);
+                        /*  $dataToResponse=User::create([
+                                'name' => $user->name,
+                                'email' => $user->email,
+                                'type'=>$defaute_Type,
+                                'password' => Hash::make($passward),
+                            ]);
 
-               }
+                           return response()->json($passward);
+                                 */  //it Works
+                                 
+                 
+                     }   
+                
+
+                else
+                   {
+                              return $this->loginWithGoogle_Via_Jwt($userEmail);
+
+                   }
 
 
 
@@ -118,6 +113,25 @@ class LoginController extends Controller
         // return $user->token;
 
     }
+
+
+       public function sungUP_Via_Jwt($userEmail,$userName,$defaute_Type,$passward){
+
+
+
+                        $dataToResponse=User::create([
+                            'name' => $userName,
+                            'email' => $userEmail,
+                            'type'=>$defaute_Type,
+                            'password' => Hash::make($passward),
+                        ]);
+
+                       return response()->json($passward);
+
+
+       }
+
+
 
         public function loginWithGoogle_Via_Jwt($userEmail){
 
@@ -141,4 +155,8 @@ class LoginController extends Controller
                               return 'user already exist';
 
           }
+
+
+
+
 }
