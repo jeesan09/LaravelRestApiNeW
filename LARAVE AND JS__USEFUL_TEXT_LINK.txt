@@ -46,6 +46,12 @@ php artisan make:mail OrderShipped --markdown=emails.orders.shipped
 11.3-env file a--QUEUE_CONNECTION=database
 11.4--console a run--php artisan queue:work
 
+12--Google Login
+Sosialite--https://www.youtube.com/watch?v=DX6HjrI2rBg
+
+13-NOTIFICATION
+13.1-CreateNotification--php artisan make:notification InvoicePaid
+
 ----------------------------SUBLINE------------------
 contol+p ----page scarch.
 control+f-----content scarch.
