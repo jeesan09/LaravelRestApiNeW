@@ -39,6 +39,13 @@ $ php artisan make:controller BookController --api
 10-Mail murkup
 php artisan make:mail OrderShipped --markdown=emails.orders.shipped
 
+11-Quee Setup
+
+11.1-php artisan queue:table
+11.2-php artisan make:job ProcessPodcast
+11.3-env file a--QUEUE_CONNECTION=database
+11.4--console a run--php artisan queue:work
+
 ----------------------------SUBLINE------------------
 contol+p ----page scarch.
 control+f-----content scarch.

@@ -39,7 +39,7 @@ class User_Welcome extends Mailable
      */
     public function build()
     {
-          $viewPassword=$this->upassword;
+           $viewPassword=$this->upassword;
            $viewName=$this->name;
 
         return $this->markdown('emails.users.welcome',

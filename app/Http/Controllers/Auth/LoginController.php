@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\WelcomeEmail;
 use App\Mail\SendEmailMailable;
 use App\Mail\User_Welcome;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -81,12 +83,12 @@ class LoginController extends Controller
                  $defaute_Type='user';
                  $passward= str_random(4);
                  $userName = $user->name;
-
+  
                  if(!$userEmail_Reasult)
                      {
                             
 
-                  return $this->sungUP_Via_Jwt($userEmail,$userName,$defaute_Type,$passward);
+                      return $this->sungUP_Via_Jwt($userEmail,$userName,$defaute_Type,$passward);
                        
 /*                          $dataToResponse=User::create([
                                 'name' => $user->name,
@@ -104,8 +106,8 @@ class LoginController extends Controller
 
                    else
                    {          
-                        return $this->loginWithGoogle_Via_Jwt($userEmail,$passward,$userName);
-
+                      return $this->loginWithGoogle_Via_Jwt($userEmail,$passward,$userName);
+                
                    }
 
 
@@ -129,10 +131,12 @@ class LoginController extends Controller
                         ]);
 
                      // Mail::to($userEmail)->send(new SendEmailMailable());//normal Mail
-               Mail::to($userEmail)->send(new User_Welcome($passward,$userName));
-                       
+ $job =(new WelcomeEmail($passward,$userName,$userEmail))->delay(Carbon::now()->addSeconds(5));
+ dispatch($job);            
+         //  Mail::to($userEmail)->send(new User_Welcome($passward,$userName));//now sending mail through job system
+                   
            //  return response()->json($passward);
-
+           return  $this->loginWithGoogle_Via_Jwt($userEmail,$passward,$userName);
 
        }
 
