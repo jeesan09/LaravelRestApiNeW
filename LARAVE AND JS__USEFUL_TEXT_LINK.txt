@@ -51,6 +51,7 @@ Sosialite--https://www.youtube.com/watch?v=DX6HjrI2rBg
 
 13-NOTIFICATION
 13.1-CreateNotification--php artisan make:notification InvoicePaid
+13.2-NotificatiMailWith Markup--php artisan make:notification InvoicePaid --markdown=mail.invoice.paid
 
 ----------------------------SUBLINE------------------
 contol+p ----page scarch.

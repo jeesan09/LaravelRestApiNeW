@@ -58,7 +58,19 @@ Route::group([
          'uses' => 'ReviewsController@MyReviews',
          'middleware' => 'can:admin-gate',
     ]);// single user has how many reviews//also working with Router MiddleWere-->admin middlewere set to this route.
-    Route::get('/notification','NotificationController@index');    
+//---------------------------------Notification Routes---------------------------------------
+
+    Route::get('/notification','NotificationController@index');   
+    Route::get('/notification/database','NotificationController@DataBaseNotification'); 
+    Route::get('/notification/User','NotificationController@CurrentUserNotification');
+    Route::get('/notification/User/Total','NotificationController@CurrentUserTotalNotification');
+    Route::get('/notification/Unread_Notification','NotificationController@CurrentUser_UnreadNotification');
+    Route::get('/notification/Read_Notification','NotificationController@CurrentUser_ReadNotification');
+
+
+
+
+//------------------------------------------------------------------------------------------------    
 
 /* Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 

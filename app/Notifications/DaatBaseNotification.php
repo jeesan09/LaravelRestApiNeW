@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
-use App\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class MailNotification extends Notification implements ShouldQueue
+class DaatBaseNotification extends Notification
 {
     use Queueable;
 
@@ -17,20 +16,9 @@ class MailNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-     public $upassword;
-     public $Name;
-
-
-
-    public function __construct(User $user)
+    public function __construct()
     {
-        // dd($userPassward);
-     
-      
-       $this->Name=$user->name;
-      // dd($upassword);
-        
-      
+        //
     }
 
     /**
@@ -41,8 +29,7 @@ class MailNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-       // return ['mail','database'];//it can be done if want to do both send mail and send Notification
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -53,15 +40,10 @@ class MailNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $name=$this->Name;
-        //dd($name);
         return (new MailMessage)
-                    ->greeting('Hello!'.$name)
-                    ->line('Hellow.dfgfg dfgsdfgsd sdfgsdfgdfg')
-                    ->error()
-                    ->subject('Notification Subject')
+                    ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
-                    ->line('Thank you  '.$name.' for using  our application!');
+                    ->line('Thank you for using our application!');
     }
 
     /**

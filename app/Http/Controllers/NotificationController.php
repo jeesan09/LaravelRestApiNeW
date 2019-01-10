@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\DaatBaseNotification;
 use App\Notifications\MailNotification;
 use App\Traits\MyAuth;
 use Illuminate\Http\Request;
@@ -40,9 +41,15 @@ class NotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function DataBaseNotification(Request $request)
     {
         //
+        $user=$this->Current_User();
+        $user->notify(new DaatBaseNotification($user));
+
+
+
+        return 'fine';
     }
 
     /**
@@ -51,11 +58,66 @@ class NotificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function CurrentUserNotification()
+    { 
+        //return 'working';
+        $Current_User= $this->Current_User();//Using Trait
+      
+       // $notificaton_of_User=$Current_User->notifications;//this retuns all filds of notification table;
+  
+        foreach ($Current_User->notifications as $notification) {
+            $dataa[]=$notification->data['data'];
+         }
+         return $dataa;
     }
 
+    public function CurrentUserTotalNotification()
+    { 
+      //  return 'working';
+        $Current_User= $this->Current_User();//Using Trait
+     
+        $notificaton_of_User=$Current_User->notifications->count();
+  
+        return $notificaton_of_User;
+    }
+    public function CurrentUser_UnreadNotification()
+    { 
+      //  return 'working';
+        $Current_User= $this->Current_User();
+        $Unread_notificaton_of_User=$Current_User->unreadNotifications->count();
+        if ($Unread_notificaton_of_User >= 1) {
+        foreach ($Current_User->unreadNotifications as $notification) 
+        {
+
+           // if ($Unread_notificaton_of_User >= 1) {
+                # code...
+              $dataa[]=$notification->data['data'];
+              $notification->markAsRead();
+              
+          //  }
+
+
+
+         }
+         return $dataa;
+      }
+       
+
+       return 'all Notifications are Read';
+           
+         
+    }
+
+    public function CurrentUser_ReadNotification()
+    { 
+      //  return 'working';
+         $Current_User= $this->Current_User();
+            foreach ($Current_User->readNotifications as $notification) {
+                $dataa[]=$notification->data['data'];
+             }
+         return $dataa;     
+
+    }    
     /**
      * Update the specified resource in storage.
      *

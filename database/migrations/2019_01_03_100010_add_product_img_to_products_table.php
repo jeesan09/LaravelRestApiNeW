@@ -15,7 +15,7 @@ class AddProductImgToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-             $table->string('product_img')->nullable()->after('discount');
+           //  $table->string('product_img')->nullable()->after('discount');
         });
     }
 
@@ -28,7 +28,7 @@ class AddProductImgToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-             $table->string('product_img')->nullable()->after('discount');
+            // $table->string('product_img')->nullable()->after('discount');
         });
     }
 }
