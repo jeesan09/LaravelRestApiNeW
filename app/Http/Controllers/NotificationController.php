@@ -76,7 +76,7 @@ class NotificationController extends Controller
       //  return 'working';
         $Current_User= $this->Current_User();//Using Trait
      
-        $notificaton_of_User=$Current_User->notifications->count();
+        $notificaton_of_User=$Current_User->unreadNotifications->count();
   
         return $notificaton_of_User;
     }

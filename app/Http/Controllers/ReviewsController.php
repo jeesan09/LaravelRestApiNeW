@@ -7,6 +7,7 @@ use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ReviewsResource;
 use App\Model\Product;
 use App\Model\Review;
+use App\Notifications\DaatBaseNotification;
 use App\Traits\MyAuth;
 use App\User;
 use Illuminate\Http\Request;
@@ -112,6 +113,11 @@ class ReviewsController extends Controller
           $reviewClassOb->user_id     =  $currentUser;//$request->user_id;
 
           $reviewClassOb->save();
+
+
+          $user=$product->thisProductbelonsto;
+         // $user=$this->Current_User();
+          $user->notify(new DaatBaseNotification($user));
 
 
         return response([
