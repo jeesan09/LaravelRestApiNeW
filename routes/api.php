@@ -27,6 +27,7 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
     Route::post('RememberPassword','PasswordResetController@sendMail');
+    Route::get('RememberPasswordConfirm{token}','PasswordResetController@ChangePassword');
 
 });//all these route is assosiate to User Login through jwt authentication
 

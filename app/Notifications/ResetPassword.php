@@ -16,9 +16,14 @@ class ResetPassword extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public $tokenVar;
+
+    public function __construct($token)
     {
         //
+        $this->tokenVar=$token;
+
+       // return $this->tokenVar;
     }
 
     /**
@@ -40,7 +45,8 @@ class ResetPassword extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.reset_password');
+        //return 'ddddddddd';
+        return (new MailMessage)->markdown('mail.reset_password',['token' => $this->tokenVar]);
     }
 
     /**

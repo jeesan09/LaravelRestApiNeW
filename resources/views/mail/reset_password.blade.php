@@ -1,9 +1,9 @@
 @component('mail::message')
 # Introduction
 
-Plese Reset Ur password by Clicking the link below
+Plese Reset Ur password by Clicking the link below{{$token}}
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => 'http://localhost:8000/api/auth/RememberPasswordConfirm'.$token])
 Rest Password
 @endcomponent
 
