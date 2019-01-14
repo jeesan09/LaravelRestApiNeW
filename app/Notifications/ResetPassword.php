@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class DaatBaseNotification extends Notification
+class ResetPassword extends Notification
 {
     use Queueable;
 
@@ -29,7 +29,7 @@ class DaatBaseNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail'];
     }
 
     /**
@@ -40,10 +40,7 @@ class DaatBaseNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new MailMessage)->markdown('mail.reset_password');
     }
 
     /**
@@ -54,10 +51,8 @@ class DaatBaseNotification extends Notification
      */
     public function toArray($notifiable)
     {
-
         return [
             //
-            'data'=>'New Comment is added',
         ];
     }
 }

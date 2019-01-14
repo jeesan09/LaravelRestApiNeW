@@ -115,7 +115,7 @@ class ReviewsController extends Controller
           $reviewClassOb->save();
 
 
-          $user=$product->thisProductbelonsto;
+          $user=$product->thisProductbelonsto;// find the Product Owner
          // $user=$this->Current_User();
           $user->notify(new DaatBaseNotification($user));
 

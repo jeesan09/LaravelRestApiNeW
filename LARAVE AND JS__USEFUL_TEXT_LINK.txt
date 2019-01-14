@@ -8,7 +8,7 @@
 
 1.$ php artisan make:seeder  UsersTableSeeder
 1.1--factory(App\Article::class,50)->create();
--------------------------
+---------------------------------------------------------------
 02-command to eaxicute dummy data
 
 1. php artisan db:seed;
@@ -17,19 +17,19 @@
 
 1.php artisan make:resource User
 
---------------------------------------
+----------------------------------------------------------------
 04-insert Http/Request in Controller
 
 1.use Illuminate\Http\Request;
 
--------------------------------------------
+---------------------------------------------------------------
 05-Database Migraton Problem----in (Proviers) inside (AppServiceProvider)\
 
 use Illuminate\Support\Facades\Schema;
 Schema::defaultStringLength(191);
 
 
---------------------------------------------------------
+--------------------------------------------------------------
 08-JWT set up link
 https://blog.pusher.com/laravel-jwt/
 
@@ -38,27 +38,33 @@ $ php artisan make:controller BookController --api
 
 10-Mail murkup
 php artisan make:mail OrderShipped --markdown=emails.orders.shipped
+----------------------------------------------------------------------
 
-11-Quee Setup
+11-NOTIFICATION
+11.1-CreateNotification--php artisan make:notification InvoicePaid
+11.2-NotificatiMailWith Markup--php artisan make:notification InvoicePaid --markdown=mail.invoice.paid
 
-11.1-php artisan queue:table
-11.2-php artisan make:job ProcessPodcast
-11.3-env file a--QUEUE_CONNECTION=database
-11.4--console a run--php artisan queue:work
 
-12--Google Login
+------------------------------------------------------------
+12-Quee Setup
+
+12.1-php artisan queue:table
+12.2-php artisan make:job ProcessPodcast
+12.3-env file a--QUEUE_CONNECTION=database
+12.4--console a run--php artisan queue:work
+----------------------------------------------------------
+
+13--Google Login
 Sosialite--https://www.youtube.com/watch?v=DX6HjrI2rBg
 
-13-NOTIFICATION
-13.1-CreateNotification--php artisan make:notification InvoicePaid
-13.2-NotificatiMailWith Markup--php artisan make:notification InvoicePaid --markdown=mail.invoice.paid
 
-----------------------------SUBLINE------------------
+
+-------------------------------------------------------------------------------------------------------------------------SUBLINE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 contol+p ----page scarch.
 control+f-----content scarch.
 ------------------------------------------------------
                                                          
-------------------------LARAVEL+ VUE (PLUGINGS)-------------
+-----------------------------------------------------------------------------------------------------------------LARAVEL+ VUE (PLUGINGS)----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1.----------
 laravelVue form----https://github.com/cretueusebiu/vform
 
@@ -84,7 +90,7 @@ A. Laravel
 3- php artisan key:generate
 4- php artisan jwt:secret
 
---------------------------------------------@@---------------------------------------------------
+--------------------------------------------@@-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 B.Angular or Any JS
 
 1-$ npm install npm@latest -g

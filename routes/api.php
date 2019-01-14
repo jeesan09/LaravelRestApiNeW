@@ -26,6 +26,8 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
+    Route::post('RememberPassword','PasswordResetController@sendMail');
+
 });//all these route is assosiate to User Login through jwt authentication
 
     /*
@@ -36,8 +38,7 @@ Route::group([
     });
 
    */ //this is only for logged in users-->this route also working perfectly.
-
-
+//-----------------------------------Product-------------------------------------------------------
     Route::apiResource('/products','ProductController');
 
 
@@ -50,7 +51,9 @@ Route::group([
 
     Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route 
     Route::get('/user_products','ProductController@Product_of_a_user');//Procucts of a single user
+//------------------------------------------------------------------------------------------------
 
+//-------------------------------------Review-----------------------------------------------------   
     Route::get('/ReviewID/{review}','ReviewsController@ReviewBilongsto')->name('review-of_whitch_Porduct');//particuar reviews Product
     Route::get('/allReviews','ReviewsController@ShowALLReviews');//all Reviews
 
@@ -58,6 +61,8 @@ Route::group([
          'uses' => 'ReviewsController@MyReviews',
          'middleware' => 'can:admin-gate',
     ]);// single user has how many reviews//also working with Router MiddleWere-->admin middlewere set to this route.
+
+//-----------------------------------------------------------------------------------------------    
 //---------------------------------Notification Routes---------------------------------------
 
     Route::get('/notification','NotificationController@index');   

@@ -63,12 +63,23 @@ class NotificationController extends Controller
         //return 'working';
         $Current_User= $this->Current_User();//Using Trait
       
-       // $notificaton_of_User=$Current_User->notifications;//this retuns all filds of notification table;
-  
+        $notificaton_of_User=$Current_User->notifications->count();//this retuns all filds of notification table;
+       
+       if($notificaton_of_User > 0){
+
         foreach ($Current_User->notifications as $notification) {
             $dataa[]=$notification->data['data'];
          }
+       
          return $dataa;
+
+        }
+
+        else{
+
+            return 'U dont have any Notifications';
+        }
+
     }
 
     public function CurrentUserTotalNotification()
