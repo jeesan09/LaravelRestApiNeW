@@ -142,9 +142,8 @@ public function ChangePassword($token,Request $request){
       
     $emaill=$request->email;
 
-	return $this->getPasswordResetRow($emaill) ? $this->ChangePassword() : 
-	$this->FailureResponse();
-
+	return $this->getPasswordResetRow($emaill) ;
+//? $this->ChangePasswordConfirm() :  $this->FailureResponse();
     // return $token;
 }
 
@@ -154,6 +153,12 @@ public function getPasswordResetRow($emaill){
    
 	return $row=DB::table('password_resets')->where('email',$emaill)->get();
 	//return $row;
+}
+
+
+public function ChangePasswordConfirm(){
+
+  return 'its ok Now';
 }
 
 }
