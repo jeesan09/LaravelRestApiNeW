@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 
+
 class PasswordResetController extends Controller
 {
     //
@@ -137,12 +138,16 @@ class PasswordResetController extends Controller
 
 	}
 
+public function ChangeViewPage($token){
 
-public function ChangePassword($token,Request $request){
+  return $token;
+}
+
+public function ChangePassword(Request $request){
       
-    $emaill=$request->email;
+   $emaill=$request->email;
 
-	return $this->getPasswordResetRow($emaill) ;
+	 return $ChangePasswordTable= $this->getPasswordResetRow($emaill) ;
 //? $this->ChangePasswordConfirm() :  $this->FailureResponse();
     // return $token;
 }
@@ -151,8 +156,8 @@ public function getPasswordResetRow($emaill){
 
 	//$user=DB::table('password_resets')->where('email',$user->email);
    
-	return $row=DB::table('password_resets')->where('email',$emaill)->get();
-	//return $row;
+	 $row=DB::table('password_resets')->where('email',$emaill)->get();
+	return $row;
 }
 
 
