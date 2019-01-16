@@ -146,24 +146,42 @@ public function ChangeViewPage($token){
 public function ChangePassword(Request $request){
       
    $emaill=$request->email;
-
-	 return $ChangePasswordTable= $this->getPasswordResetRow($emaill) ;
-//? $this->ChangePasswordConfirm() :  $this->FailureResponse();
+   $token =$request->token;
+   $ChangePasswordTableRow=$this->getPasswordResetRow($emaill,$token);
+	 return $ChangePasswordTableRow->count()>0 ? $this->ChangePasswordConfirm($ChangePasswordTableRow,$request) :  $this->FailureResponse();
     // return $token;
 }
 
-public function getPasswordResetRow($emaill){
+public function getPasswordResetRow($emaill,$token){
 
 	//$user=DB::table('password_resets')->where('email',$user->email);
    
-	 $row=DB::table('password_resets')->where('email',$emaill)->get();
-	return $row;
+     return DB::table('password_resets')->where(['email'=>$emaill,'token'=>$token])->get();
+
+
 }
 
 
-public function ChangePasswordConfirm(){
+public function ChangePasswordConfirm($ChangePasswordTableRow,$request){
+  /*$myJSON = json_encode($ChangePasswordTableRow);*/
+  //return $ChangePasswordTableRow; 
+    //return $ChangePasswordTableRow[0]->token;
+  //return $request->password;
+   $email=$ChangePasswordTableRow[0]->email;
+   $token=$ChangePasswordTableRow[0]->token;
+  $user= User::where('email', $ChangePasswordTableRow[0]->email)->first();
+  $user->update(['password'=>bcrypt($request->password)]);
+ // $user->update(['password'=>$request->password]);
+ //  return $user;
+/* $row= $this->getPasswordResetRow($ChangePasswordTableRow[0]->email,$ChangePasswordTableRow[0]->token);
+ return $row->delete();*/
+  DB::table('password_resets')->where(['email'=>$email,'token'=>$token])->delete();
+  return response()->json([
 
-  return 'its ok Now';
+               'response' => 'Your Password HasBeen Reseted'
+
+          ], Response::HTTP_CREATED);
+
 }
 
 }
