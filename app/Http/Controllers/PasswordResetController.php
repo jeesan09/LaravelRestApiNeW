@@ -138,9 +138,22 @@ class PasswordResetController extends Controller
 	}
 
 
-public function ChangePassword($token){
+public function ChangePassword($token,Request $request){
+      
+    $emaill=$request->email;
 
-     return $token;
+	return $this->getPasswordResetRow($emaill) ? $this->ChangePassword() : 
+	$this->FailureResponse();
+
+    // return $token;
+}
+
+public function getPasswordResetRow($emaill){
+
+	//$user=DB::table('password_resets')->where('email',$user->email);
+   
+	return $row=DB::table('password_resets')->where('email',$emaill)->get();
+	//return $row;
 }
 
 }
