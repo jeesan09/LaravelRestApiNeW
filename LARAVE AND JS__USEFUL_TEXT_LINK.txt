@@ -31,7 +31,7 @@ Schema::defaultStringLength(191);
 
 --------------------------------------------------------------
 08-JWT set up link
-https://blog.pusher.com/laravel-jwt/
+https://jwt-auth.readthedocs.io/en/develop/laravel-installation/
 
 09-Controller Create
 $ php artisan make:controller BookController --api
@@ -56,6 +56,11 @@ php artisan make:mail OrderShipped --markdown=emails.orders.shipped
 
 13--Google Login
 Sosialite--https://www.youtube.com/watch?v=DX6HjrI2rBg
+
+
+----------------------------------------------------------
+14--CORS-Solve
+https://thewebtier.com/laravel/handle-cors-requests-vuejs-client-laravel-api/  =====================(metohod 3)
 
 
 
@@ -134,3 +139,9 @@ vedio-Jwt          (       https://www.youtube.com/watch?v=l201RSQ7Ti4          
 01--https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US
 02- SUBLINE:php companion;
 03 - Add a new Coulum in existing Table = https://stackoverflow.com/questions/16791613/add-a-new-column-to-existing-table-in-a-migration
+
+
+--------------------------------------------------------------------VueJs--------------------------------------------------------------
+01-installention link
+
+https://cli.vuejs.org/guide/creating-a-project.html#using-the-gui,

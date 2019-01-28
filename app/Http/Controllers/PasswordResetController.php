@@ -155,6 +155,7 @@ public function ChangePassword(Request $request){
 public function getPasswordResetRow($emaill,$token){
 
 	//$user=DB::table('password_resets')->where('email',$user->email);
+      
    
      return DB::table('password_resets')->where(['email'=>$emaill,'token'=>$token])->get();
 
@@ -169,13 +170,15 @@ public function ChangePasswordConfirm($ChangePasswordTableRow,$request){
   //return $request->password;
    $email=$ChangePasswordTableRow[0]->email;
    $token=$ChangePasswordTableRow[0]->token;
-  $user= User::where('email', $ChangePasswordTableRow[0]->email)->first();
-  $user->update(['password'=>bcrypt($request->password)]);
+
+   $user= User::where('email', $ChangePasswordTableRow[0]->email)->first();
+   $user->update(['password'=>bcrypt($request->password)]);
  // $user->update(['password'=>$request->password]);
  //  return $user;
 /* $row= $this->getPasswordResetRow($ChangePasswordTableRow[0]->email,$ChangePasswordTableRow[0]->token);
  return $row->delete();*/
   DB::table('password_resets')->where(['email'=>$email,'token'=>$token])->delete();
+
   return response()->json([
 
                'response' => 'Your Password HasBeen Reseted'
@@ -183,5 +186,7 @@ public function ChangePasswordConfirm($ChangePasswordTableRow,$request){
           ], Response::HTTP_CREATED);
 
 }
+
+
 
 }

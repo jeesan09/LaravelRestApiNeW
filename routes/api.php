@@ -30,7 +30,9 @@ Route::group([
     Route::get('RememberPasswordViewPage{token}','PasswordResetController@ChangeViewPage');
     Route::post('RememberPasswordConfirmButtonClick','PasswordResetController@ChangePassword');
 
-});//all these route is assosiate to User Login through jwt authentication
+});
+
+//all these route is assosiate to User Login through jwt authentication
 
     /*
     Route::group(['middleware' => ['jwt.auth']], function() {
@@ -40,11 +42,10 @@ Route::group([
     });
 
    */ //this is only for logged in users-->this route also working perfectly.
-//-----------------------------------Product-------------------------------------------------------
+//------------------------------------------Product-----------------------------------------------------------------
+
     Route::apiResource('/products','ProductController');
 
-
-    
     Route::group([ 'prefix'=>'products',/*'middleware' =>'can:superAdmin-gate'*/],function(){
 
 		Route::apiResource('/{product}/reviews','ReviewsController');
@@ -53,9 +54,11 @@ Route::group([
 
     Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route 
     Route::get('/user_products','ProductController@Product_of_a_user');//Procucts of a single user
-//------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------
 
-//-------------------------------------Review-----------------------------------------------------   
+
+
+//--------------------------------------Review---------------------------------------------------------------------   
     Route::get('/ReviewID/{review}','ReviewsController@ReviewBilongsto')->name('review-of_whitch_Porduct');//particuar reviews Product
     Route::get('/allReviews','ReviewsController@ShowALLReviews');//all Reviews
 
@@ -64,8 +67,11 @@ Route::group([
          'middleware' => 'can:admin-gate',
     ]);// single user has how many reviews//also working with Router MiddleWere-->admin middlewere set to this route.
 
-//-----------------------------------------------------------------------------------------------    
-//---------------------------------Notification Routes---------------------------------------
+//--------------------------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------Notification Routes----------------------------------------------------------------
 
     Route::get('/notification','NotificationController@index');   
     Route::get('/notification/database','NotificationController@DataBaseNotification'); 
@@ -74,10 +80,7 @@ Route::group([
     Route::get('/notification/Unread_Notification','NotificationController@CurrentUser_UnreadNotification');
     Route::get('/notification/Read_Notification','NotificationController@CurrentUser_ReadNotification');
 
-
-
-
-//------------------------------------------------------------------------------------------------    
+//-------------------------------------------------------------------------------------------------------------------   
 
 /* Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
