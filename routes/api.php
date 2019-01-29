@@ -54,6 +54,8 @@ Route::group([
 
     Route::get('/product_owner/{product}','ProductController@ProductOwner');//Product ouwner Route 
     Route::get('/user_products','ProductController@Product_of_a_user');//Procucts of a single user
+//=============catecory======
+    Route::get('/products_category/{product}','ProductController@products_category');//catecoryies of a product
 //-----------------------------------------------------------------------------------------------------------------
 
 
@@ -68,9 +70,10 @@ Route::group([
     ]);// single user has how many reviews//also working with Router MiddleWere-->admin middlewere set to this route.
 
 //--------------------------------------------------------------------------------------------------------------------
+//---------------------------------Catecory----------------------------------------------------------------------------
 
-
-
+    Route::get('/category_products/{catego}','CategoryController@Show_All_Products');//products of a spcific catecory
+    Route::post('/category_delete/{product}','ProductController@removeCategory');//depatch category from Products
 //---------------------------------Notification Routes----------------------------------------------------------------
 
     Route::get('/notification','NotificationController@index');   

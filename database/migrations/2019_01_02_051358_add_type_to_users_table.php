@@ -27,7 +27,7 @@ class AddTypeToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-           // $table->dropColumn('type'); //need to uncomment before rollBack
+          //  $table->dropColumn('type'); //need to uncomment before rollBack
         });
     }
 }

@@ -6,12 +6,14 @@ use App\Http\Requests\CustomRequest\ProductRequest;
 use App\Http\Resources\ApiResources\ProductResource;
 use App\Http\Resources\ApiResources\ProductResourceCollection;
 use App\Lib\FileUpload;
+use App\Model\Category;
 use App\Model\Product;
 use App\Traits\MyAuth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Storage;
 use JWTAuth;
 
@@ -33,7 +35,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-         $this->middleware('jwt.auth')->except('index','show','ProductOwner','show_Product');
+         $this->middleware('jwt.auth')->except('index','show','ProductOwner','show_Product','products_category','removeCategory');
          $token = JWTAuth::getToken();
 
 
@@ -68,7 +70,7 @@ class ProductController extends Controller
     }
 
 
-
+  
 
 
     /**
@@ -125,6 +127,8 @@ class ProductController extends Controller
            //return $imgname;
        }
         
+ 
+        
       // return $imgname;
 
        // return $request->all();
@@ -137,7 +141,14 @@ class ProductController extends Controller
         $productClassOB->product_img =$imgname;
         $productClassOB->user_id     =$this->logged_user->id;
 
+
+
         $productClassOB->save();
+
+
+
+        $categorysId = [1, 2];
+        $productClassOB->categorys()->attach($categorysId);        
 
       //  return $request->all(); this anly returns the the data when the request is success;
 
@@ -148,6 +159,18 @@ class ProductController extends Controller
         ], Response::HTTP_CREATED );
     }
 
+    public function removeCategory(Product $product,Request $request)
+    {
+           // return $request->data;
+           $var= DB::table('categories')
+                ->where('title', $request->data)->value('id');
+            
+            $category = Category::find($var);
+
+            $product->categorys()->detach($category);
+            
+            return 'Success';
+    }
 
     public function show_Product(Product $product)
     {   
@@ -267,5 +290,13 @@ class ProductController extends Controller
             ],Response::HTTP_ACCEPTED/*201*/);
           }
 
+    }
+
+
+    public function products_category(Product $product){
+
+      /*  dd($product);*/
+
+             return  $product->categorys;
     }
 }

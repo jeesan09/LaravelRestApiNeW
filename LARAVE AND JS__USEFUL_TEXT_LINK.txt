@@ -62,6 +62,10 @@ Sosialite--https://www.youtube.com/watch?v=DX6HjrI2rBg
 14--CORS-Solve
 https://thewebtier.com/laravel/handle-cors-requests-vuejs-client-laravel-api/  =====================(metohod 3)
 
+-------------------------------------------------------------
+15.Laravel Many to Many RelationShip
+
+https://appdividend.com/2018/05/17/laravel-many-to-many-relationship-example/#Step_2_Create_a_model_and_migration
 
 
 -------------------------------------------------------------------------------------------------------------------------SUBLINE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
