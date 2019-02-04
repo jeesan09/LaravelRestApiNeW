@@ -90,8 +90,8 @@ Route::group([
     Route::apiResource('/{product}/reviews','ReviewsController');
  }); // this is the way of Putting MiddleWere inside Routing*/
 
-/* //------------Socialite--------//
-Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+ //------------Socialite--------//
+/*Route::get('login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');*/
 
 

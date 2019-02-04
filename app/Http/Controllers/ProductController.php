@@ -159,6 +159,8 @@ class ProductController extends Controller
         ], Response::HTTP_CREATED );
     }
 
+
+
     public function removeCategory(Product $product,Request $request)
     {
            // return $request->data;
@@ -172,6 +174,9 @@ class ProductController extends Controller
             return 'Success';
     }
 
+
+
+
     public function show_Product(Product $product)
     {   
         $productName = $product->product_img;
@@ -180,7 +185,7 @@ class ProductController extends Controller
         return "<img src='".$url."' />";// this also woking
 
 /*        $url=Storage::url('jeesan3.png');
-        return "<img src='".$url."' />";*/// working Fine
+        return "<img src='".$url."' />";*/  // working Fine
     } 
 
     /**

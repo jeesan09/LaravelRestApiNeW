@@ -79,6 +79,8 @@ laravelVue form----https://github.com/cretueusebiu/vform
 
 2. sweetnotification-------- https://sweetalert2.github.io/#download
 
+3.Social Login-----------https://www.npmjs.com/package/vue-hellojs
+
 ------------------------------------------SQL + SUBLINE SHORTCUT---------------------------
 
 06-https://kirankoduru.github.io/python/sublime-text-ninja.html //subline ShortCut
