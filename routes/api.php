@@ -56,6 +56,7 @@ Route::group([
     Route::get('/user_products','ProductController@Product_of_a_user');//Procucts of a single user
 //=============catecory======
     Route::get('/products_category/{product}','ProductController@products_category');//catecoryies of a product
+    Route::get('/showp/{product}', 'ProductController@show_Product');
 //-----------------------------------------------------------------------------------------------------------------
 
 

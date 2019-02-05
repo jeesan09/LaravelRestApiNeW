@@ -151,3 +151,9 @@ vedio-Jwt          (       https://www.youtube.com/watch?v=l201RSQ7Ti4          
 01-installention link
 
 https://cli.vuejs.org/guide/creating-a-project.html#using-the-gui,
+
+02-Sweet alart link
+https://sweetalert2.github.io/
+
+03-Social Login(Hellow js)
+https://www.npmjs.com/package/vue-hellojs

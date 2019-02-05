@@ -181,7 +181,7 @@ class ProductController extends Controller
     {   
         $productName = $product->product_img;
 
-        $url=('/storage/DB/').$productName;
+      return  $url=('/storage/DB/').$productName;
         return "<img src='".$url."' />";// this also woking
 
 /*        $url=Storage::url('jeesan3.png');

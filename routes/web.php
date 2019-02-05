@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/showp/{product}', 'ProductController@show_Product');
+/*Route::get('/showp/{product}', 'ProductController@show_Product');*/
 
 
  //------------Socialite--------//
