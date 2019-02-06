@@ -63,7 +63,7 @@ class ProductController extends Controller
 
   
       // return Product::all();// this is also working but calling the function at productResourceCollection  
-     return  ProductResourceCollection::collection(Product::orderBy('created_at', 'desc')->paginate(5));// this is also working but calling the function at productResourceCollection
+     return  ProductResourceCollection::collection(Product::orderBy('created_at', 'desc')->paginate(25));// this is also working but calling the function at productResourceCollection
 
      //   return ProductResource::collection(Product::all());//this will call product resourece
 
@@ -140,7 +140,8 @@ class ProductController extends Controller
         $productClassOB->discount    =$request->discount;
         $productClassOB->product_img =$imgname;
         $productClassOB->user_id     =$this->logged_user->id;
-
+        $productClassOB->imageUrl =('http://localhost:8000/storage/DB/').$imgname;
+        
 
 
         $productClassOB->save();
@@ -181,7 +182,7 @@ class ProductController extends Controller
     {   
         $productName = $product->product_img;
 
-      return  $url=('/storage/DB/').$productName;
+     return $url=('http://localhost:8000/storage/DB/').$productName;
         return "<img src='".$url."' />";// this also woking
 
 /*        $url=Storage::url('jeesan3.png');

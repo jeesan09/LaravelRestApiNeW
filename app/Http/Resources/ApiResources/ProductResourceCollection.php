@@ -30,9 +30,10 @@ class ProductResourceCollection extends Resource
             'Id'=>$this->id,
             'Name' => $this->name,
             'Price' => $this->price,
+            'ImageUrl'=>$this->imageUrl,
           //  'Descripton' => $this->detail,
           //  'Discount' => $this->discount,
-            'Rating'=>$this->review_many->count() > 0 ? round($this->review_many->sum('rating')/$this->review_many->count(),1) : 'no rating Still Now',
+            'Rating'=>$this->review_many->count() > 0 ? round($this->review_many->sum('rating')/$this->review_many->count(),1) : 0,
         //    'created_at' => $this->created_at,
         //    'updated_at' => $this->updated_at,
 
