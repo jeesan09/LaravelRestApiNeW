@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use JWTAuth;
 
 Use DB;
+Use Image;
 
 
 
@@ -116,11 +117,14 @@ class ProductController extends Controller
        if ($request->has('imag')) {
            $file = $request->file('imag');
            $imgname=sha1(time()) . '.' . $file->getClientOriginalExtension();
+            $resizedimg=Image::make($request->imag)->resize(1000, 500);//not working
+            $resizedimg->save(public_path($imgname));
 
          // return $file->getClientOriginalName();returns original file name;
          // $request->imag->store('public/DB');//working
+           
+    //  $request->imag->storeAs('public/DB',$imgname);// -------this store image to storage 22storage;
 
-           $request->imag->storeAs('public/DB',$imgname);
 //  Storage::putFile('public/products_image_secoend_method',$request->file('imag'));//working
 
           // return Storage::url($imgname);
@@ -140,8 +144,8 @@ class ProductController extends Controller
         $productClassOB->discount    =$request->discount;
         $productClassOB->product_img =$imgname;
         $productClassOB->user_id     =$this->logged_user->id;
-        $productClassOB->imageUrl =('http://localhost:8000/storage/DB/').$imgname;
-        
+    //    $productClassOB->imageUrl =('http://localhost:8000/storage/DB/').$imgname;// -this store image to storage 22storage;
+        $productClassOB->imageUrl =('http://localhost:8000/').$imgname;
 
 
         $productClassOB->save();
