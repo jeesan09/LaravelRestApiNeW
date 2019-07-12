@@ -61,7 +61,8 @@ class ProductController extends Controller
     {
           //  return $this->logged_user->id; //this is workin Perfectly;
 
-
+       $arr_ip = geoip()->getLocation('103.216.56.54');
+       dd($arr_ip);
   
       // return Product::all();// this is also working but calling the function at productResourceCollection  
      return  ProductResourceCollection::collection(Product::orderBy('created_at', 'desc')->paginate(25));// this is also working but calling the function at productResourceCollection

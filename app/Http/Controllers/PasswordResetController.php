@@ -68,7 +68,10 @@ class PasswordResetController extends Controller
 
         $token=$this->createToken($user);
      	  
+     //   return $this->SuccessResponse();
+        
         $when = now()->addSeconds(5);
+
         $user->notify((new ResetPassword($token))->delay($when));
 
         

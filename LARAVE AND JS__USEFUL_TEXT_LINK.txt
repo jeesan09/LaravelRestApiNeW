@@ -1,7 +1,7 @@
 
-                                                                                                            LARAVEL TIPS
+                                          LARAVEL TIPS
 
-00-  MODELS NAME-----SHOULD BE IN SINGULAR FORM............AS (REVIEWS)............WRONG THIS SHOULD BE (REVIEW); 
+00-  MODELS NAME-----SHOULD BE IN SINGULAR FORM............AS (REVIEW)............WRONG THIS SHOULD BE (REVIEWS); 
 
 
 01-database seeder for each model
@@ -60,13 +60,58 @@ Sosialite--https://www.youtube.com/watch?v=DX6HjrI2rBg
 
 ----------------------------------------------------------
 14--CORS-Solve
-https://thewebtier.com/laravel/handle-cors-requests-vuejs-client-laravel-api/  =====================(metohod 3)
+001-https://www.youtube.com/watch?v=84bXch-YIvI(this really explain it all)
+01-https://thewebtier.com/laravel/handle-cors-requests-vuejs-client-laravel-api/  =====================(metohod 3)
 
 -------------------------------------------------------------
 15.Laravel Many to Many RelationShip
 
 https://appdividend.com/2018/05/17/laravel-many-to-many-relationship-example/#Step_2_Create_a_model_and_migration
 
+16.Laravel deploy
+https://www.youtube.com/watch?v=ITtcPRyuJMg
+
+17. - Add a new Coulum in existing Table = https://stackoverflow.com/questions/16791613/add-a-new-column-to-existing-table-in-a-migration
+
+18. - Geo Location-webpage  - https://artisansweb.net/laravel-geoip-library-find-out-geolocation-using-ip-address/
+                  -youtube  - https://www.youtube.com/watch?v=Fdh0lehd3xc&t=303s   
+
+19.- Mail 
+
+001- send mail to Real Mail Address
+https://www.smtp2go.com/
+002- smtp problem in server
+https://stackoverflow.com/questions/14176965/swift-transportexception-connection-could-not-be-established-with-host-smtp-gmai    
+
+ 'driver' => 'mail',
+In app/config/mail    
+
+1.1-but this not working
+MAIL_DRIVER=mail
+MAIL_HOST=mail.smtp2go.com
+MAIL_PORT=587
+MAIL_USERNAME=unipay
+MAIL_PASSWORD=@@secret@@
+MAIL_ENCRYPTION=tls    
+1.2 locally working
+
+MAIL_DRIVER=smtp
+MAIL_HOST=mail.smtp2go.com
+MAIL_PORT=2525
+MAIL_USERNAME=unipay
+MAIL_PASSWORD=@@secret@@
+MAIL_ENCRYPTION=null      
+
+never forget to cheak ur spam   
+
+
+20.-WEB Roles and Permission 
+
+001- tutorial      https://www.youtube.com/watch?v=zIgYJlu03bI&list=PLe30vg_FG4OQKaLJodH9E8htPvfj7jamt
+002- documentaion  https://github.com/spatie/laravel-permission
+
+21 .API Roles and Permisson
+001-https://2019.quickadminpanel.com/ 
 
 -------------------------------------------------------------------------------------------------------------------------SUBLINE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 contol+p ----page scarch.
@@ -96,7 +141,7 @@ laravelVue form----https://github.com/cretueusebiu/vform
 
 A. Laravel
 
-1- comoser install
+1- composer install
 2- cp .env.example .env / For create Env
 3- php artisan key:generate
 4- php artisan jwt:secret
@@ -120,6 +165,18 @@ npm installation problem
 npm i -g npm@latest.
 npm cache clean -f
 npm install -g npm
+--------------------------------------------------------------------@@----------bracching------------------------------------------------
+001- create a branch
+      $git branch Permisson_done
+002- cheak branch
+      $ git branch
+003- Switch from one to another branch
+      $ git checkout  Permisson_done
+
+004- git commit      
+
+
+
 
 
 
@@ -157,3 +214,10 @@ https://sweetalert2.github.io/
 
 03-Social Login(Hellow js)
 https://www.npmjs.com/package/vue-hellojs
+
+04-Deploy vue js app
+https://www.youtube.com/watch?v=nRLV_CogsO0
+
+05-scarch 
+
+

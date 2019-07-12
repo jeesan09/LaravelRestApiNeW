@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Digital Agency Nordic'),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,9 @@ return [
         //jwt required files
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
+        //geoLocation
+        \Torann\GeoIP\GeoIPServiceProvider::class,
+
     ],
 
     /*
@@ -230,6 +233,7 @@ return [
         //aliases...........
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
 
     ],
 

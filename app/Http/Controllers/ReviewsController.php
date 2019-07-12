@@ -47,7 +47,7 @@ class ReviewsController extends Controller
 
     public function ShowALLReviews()
     {
-
+                    
         $user=$this->Current_User();
         if (Gate::allows('superAdmin-gate',$user)) {
 

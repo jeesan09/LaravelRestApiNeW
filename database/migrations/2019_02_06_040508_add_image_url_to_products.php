@@ -29,7 +29,7 @@ class AddImageUrlToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-             $table->string('imageUrl')->nullable()->after('discount');
+             $table->dropColumn('imageUrl')->nullable()->after('discount');
             
         });
     }

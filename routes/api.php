@@ -31,7 +31,21 @@ Route::group([
     Route::post('RememberPasswordConfirmButtonClick','PasswordResetController@ChangePassword');
 
 });
+//UserContoller Routes
 
+
+
+  Route::get('/allUsers','UserContoller@Show_all_Users'); 
+  Route::get('/allAdmins/{differntUserTypes}','UserContoller@Shaow_all_admins'); 
+  Route::put('/user/{user}'  , 'UserContoller@update');
+  Route::post('/user/create' , 'UserContoller@store');
+  Route::delete('/user/delete/{userd}' , 'UserContoller@destroy');
+  Route::get('/user/type' , 'UserContoller@CurrentUserType');
+  Route::put('/user/block/{user}' , 'UserContoller@Block_status');
+
+
+
+//--------------------------------------UserContoller------------------------------------------------
 //all these route is assosiate to User Login through jwt authentication
 
     /*

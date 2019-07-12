@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\MyAuth;
 
 class AuthController extends Controller
 {
@@ -17,25 +18,62 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+     use MyAuth;
+
+/*    public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login','create']]);
+    }*/
+    public function __construct()
+    {
+         $this->middleware('jwt.auth')->except('login','create');
+        
     }
-
     /**
      * Get a JWT via given credentials.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function geoLoacation($token,$email)
+    {       
+            $arr_ip = geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+          //  dd($arr_ip["country"]);
+             
+            $User=User::where('email', $email)->first();
+            $User->status = true;
+            $User->country = $arr_ip["country"];
+            $User->ip_address = $arr_ip["ip"];
+            $User->city = $arr_ip["city"];
+            $User->lat = $arr_ip["lat"];
+            $User->lon = $arr_ip["lon"];
+            $User->save();
+
+            if($User->block_status==0){
+               
+               return $this->respondWithToken($token);
+            }
+            else{
+
+               return 'Your Account has been Blocked Please contact with authority';   
+            }
+            
+    }
+
+    public function login(Request $request)
+
+
     {
+
+
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        
+        return $this->geoLoacation($token,$request->email);
 
-        return $this->respondWithToken($token);
+        
     }
 
     /**
@@ -54,7 +92,13 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
-    {
+    {   
+        $user=$this->Current_User_ID();
+    
+        $User=User::where('id', $user)->first(); 
+        
+        $User->status = false;
+        $User->save();
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
@@ -101,7 +145,7 @@ class AuthController extends Controller
         //return $req;
         $validator = Validator::make($req->all(), [
             'email' => 'required|string|email|max:255|unique:users',
-            'name' => 'required',
+          //  'name' => 'required',
          //   'type'   =>['required','string'],
             'password'=> 'required'
         ]);
@@ -112,7 +156,7 @@ class AuthController extends Controller
        $dataToResponse=User::create([
             'name' => $req['name'],
             'email' => $req['email'],
-            'type'=>$req['type'],
+           // 'type'=>$req['type'],
             'password' => Hash::make($req['password']),
         ]);
 

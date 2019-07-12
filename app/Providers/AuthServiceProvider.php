@@ -21,6 +21,9 @@ class AuthServiceProvider extends ServiceProvider
 
     ];
 
+
+/*    $cars = array("admin-gate", "superAdmin-gate", "user-gate");*/
+
     /**
      * Register any authentication / authorization services.
      *
@@ -34,6 +37,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('superAdmin-gate','App\Policies\MyPolicy@superAdminPolicy');
         Gate::define('user-gate','App\Policies\MyPolicy@userPolicy');
 
+
+
+
+        
 /*      Not Using Policy
         Gate::define('superAdmin-gate', function ($user) {
         return $user->type == 'superAdmin';
