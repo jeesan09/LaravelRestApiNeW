@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\SendEmailMailable;
+use App\Mail\Registered;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -29,11 +30,11 @@ Route::get('login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 
-/*Route::get('email', function(){
+Route::get('email', function(){
  //return 'ok';
  //Mail::to('jeesan09iub@gmail.com')->send(new SendEmailMailable());
-  Mail::to('jeesan09iub@gmail.com')->send(new SendEmailMailable());
+  Mail::to('jeesan09iub@gmail.com')->send(new Registered());
   return 'ok';
-});*/ //mail sending is working
+}); //mail sending is working
 
 

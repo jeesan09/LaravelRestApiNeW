@@ -136,6 +136,8 @@ class LoginController extends Controller
          //  Mail::to($userEmail)->send(new User_Welcome($passward,$userName));//now sending mail through job system
                    
            //  return response()->json($passward);
+
+ 
            return  $this->loginWithGoogle_Via_Jwt($userEmail,$passward,$userName);
 
        }
