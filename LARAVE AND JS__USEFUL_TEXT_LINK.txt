@@ -1,0 +1,223 @@
+
+                                          LARAVEL TIPS
+
+00-  MODELS NAME-----SHOULD BE IN SINGULAR FORM............AS (REVIEW)............WRONG THIS SHOULD BE (REVIEWS); 
+
+
+01-database seeder for each model
+
+1.$ php artisan make:seeder  UsersTableSeeder
+1.1--factory(App\Article::class,50)->create();
+---------------------------------------------------------------
+02-command to eaxicute dummy data
+
+1. php artisan db:seed;
+--------------------------------
+03-creare resource for each model
+
+1.php artisan make:resource User
+
+----------------------------------------------------------------
+04-insert Http/Request in Controller
+
+1.use Illuminate\Http\Request;
+
+---------------------------------------------------------------
+05-Database Migraton Problem----in (Proviers) inside (AppServiceProvider)\
+
+use Illuminate\Support\Facades\Schema;
+Schema::defaultStringLength(191);
+
+
+--------------------------------------------------------------
+08-JWT set up link
+https://jwt-auth.readthedocs.io/en/develop/laravel-installation/
+
+09-Controller Create
+$ php artisan make:controller BookController --api
+
+10-Mail murkup
+php artisan make:mail OrderShipped --markdown=emails.orders.shipped
+----------------------------------------------------------------------
+
+11-NOTIFICATION
+11.1-CreateNotification--php artisan make:notification InvoicePaid
+11.2-NotificatiMailWith Markup--php artisan make:notification InvoicePaid --markdown=mail.invoice.paid
+
+
+------------------------------------------------------------
+12-Quee Setup
+
+12.1-php artisan queue:table
+12.2-php artisan make:job ProcessPodcast
+12.3-env file a--QUEUE_CONNECTION=database
+12.4--console a run--php artisan queue:work
+----------------------------------------------------------
+
+13--Google Login
+Sosialite--https://www.youtube.com/watch?v=DX6HjrI2rBg
+
+
+----------------------------------------------------------
+14--CORS-Solve
+001-https://www.youtube.com/watch?v=84bXch-YIvI(this really explain it all)
+01-https://thewebtier.com/laravel/handle-cors-requests-vuejs-client-laravel-api/  =====================(metohod 3)
+
+-------------------------------------------------------------
+15.Laravel Many to Many RelationShip
+
+https://appdividend.com/2018/05/17/laravel-many-to-many-relationship-example/#Step_2_Create_a_model_and_migration
+
+16.Laravel deploy
+https://www.youtube.com/watch?v=ITtcPRyuJMg
+
+17. - Add a new Coulum in existing Table = https://stackoverflow.com/questions/16791613/add-a-new-column-to-existing-table-in-a-migration
+
+18. - Geo Location-webpage  - https://artisansweb.net/laravel-geoip-library-find-out-geolocation-using-ip-address/
+                  -youtube  - https://www.youtube.com/watch?v=Fdh0lehd3xc&t=303s   
+
+19.- Mail 
+
+001- send mail to Real Mail Address
+https://www.smtp2go.com/
+002- smtp problem in server
+https://stackoverflow.com/questions/14176965/swift-transportexception-connection-could-not-be-established-with-host-smtp-gmai    
+
+ 'driver' => 'mail',
+In app/config/mail    
+
+1.1-but this not working
+MAIL_DRIVER=mail
+MAIL_HOST=mail.smtp2go.com
+MAIL_PORT=587
+MAIL_USERNAME=unipay
+MAIL_PASSWORD=@@secret@@
+MAIL_ENCRYPTION=tls    
+1.2 locally working
+
+MAIL_DRIVER=smtp
+MAIL_HOST=mail.smtp2go.com
+MAIL_PORT=2525
+MAIL_USERNAME=unipay
+MAIL_PASSWORD=@@secret@@
+MAIL_ENCRYPTION=null      
+
+never forget to cheak ur spam   
+
+
+20.-WEB Roles and Permission 
+
+001- tutorial      https://www.youtube.com/watch?v=zIgYJlu03bI&list=PLe30vg_FG4OQKaLJodH9E8htPvfj7jamt
+002- documentaion  https://github.com/spatie/laravel-permission
+
+21 .API Roles and Permisson
+001-https://2019.quickadminpanel.com/ 
+
+-------------------------------------------------------------------------------------------------------------------------SUBLINE--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+contol+p ----page scarch.
+control+f-----content scarch.
+------------------------------------------------------
+                                                         
+-----------------------------------------------------------------------------------------------------------------LARAVEL+ VUE (PLUGINGS)----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.----------
+laravelVue form----https://github.com/cretueusebiu/vform
+
+2. sweetnotification-------- https://sweetalert2.github.io/#download
+
+3.Social Login-----------https://www.npmjs.com/package/vue-hellojs
+
+------------------------------------------SQL + SUBLINE SHORTCUT---------------------------
+
+06-https://kirankoduru.github.io/python/sublime-text-ninja.html //subline ShortCut
+
+
+07-sql practice
+1.http://www.sql-ex.ru/learn_exercises.php?LN=1
+
+--------------------------------------------------------------------------------------===============================+++++++==================================----------------------------------------------------------------------------
+
+
+                                                                                                              GIT CLONE A NEW PROJECT ...
+
+A. Laravel
+
+1- composer install
+2- cp .env.example .env / For create Env
+3- php artisan key:generate
+4- php artisan jwt:secret
+
+--------------------------------------------@@-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+B.Angular or Any JS
+
+1-$ npm install npm@latest -g
+2- npm install
+
+---------------
+
+-----------------------------
+inside :app.module.ts
+import { MatExpansionModule } from '@angular/material';
+
+
+------------------------------------------
+npm installation problem
+
+npm i -g npm@latest.
+npm cache clean -f
+npm install -g npm
+--------------------------------------------------------------------@@----------bracching------------------------------------------------
+001- create a branch
+      $git branch Permisson_done
+002- cheak branch
+      $ git branch
+003- Switch from one to another branch
+      $ git checkout  Permisson_done
+
+004- git commit      
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                    ANGULAR TEXT
+
+
+ng new AppName
+npm install -g @angular/cli
+ng add @angular/material
+
+----if Problem---------
+ng update @angular/cli
+-----------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                  USEFULRESOURCES
+Vedio--Use keyword (       https://www.youtube.com/watch?v=V0CtmYaSju8          )
+vedio-Jwt          (       https://www.youtube.com/watch?v=l201RSQ7Ti4          )
+
+07-access token Crome Extention
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+01--https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US
+02- SUBLINE:php companion;
+03 - Add a new Coulum in existing Table = https://stackoverflow.com/questions/16791613/add-a-new-column-to-existing-table-in-a-migration
+
+
+--------------------------------------------------------------------VueJs--------------------------------------------------------------
+01-installention link
+
+https://cli.vuejs.org/guide/creating-a-project.html#using-the-gui,
+
+02-Sweet alart link
+https://sweetalert2.github.io/
+
+03-Social Login(Hellow js)
+https://www.npmjs.com/package/vue-hellojs
+
+04-Deploy vue js app
+https://www.youtube.com/watch?v=nRLV_CogsO0
+
+05-scarch 
+
+
