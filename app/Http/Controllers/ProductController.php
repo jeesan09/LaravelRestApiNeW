@@ -13,7 +13,10 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use File;
+//gate 
 
+use Illuminate\Support\Facades\Gate;
 // image store
 
 use App\Lib\FileUpload;
@@ -45,6 +48,9 @@ class ProductController extends Controller
          $token = JWTAuth::getToken();
 
 
+
+
+
 /*           if (!empty($token)) {
              $user = JWTAuth::toUser($token);
              $this->logged_user = User::find($user->id);
@@ -72,6 +78,10 @@ class ProductController extends Controller
       // return Product::all();// this is also working but calling the function at productResourceCollection  
        //return  ProductResourceCollection::collection(Product::orderBy('created_at', 'desc')->paginate(25));
        // this is also working but calling the function at productResourceCollection
+
+        if (! Gate::allows('can:superAdmin-gate')) {
+            abort(403);
+        }
 
         return ProductResource::collection(Product::all());//this will call product resourece
 
@@ -150,7 +160,8 @@ class ProductController extends Controller
         $productClassOB->detail      =$request->detail;
         $productClassOB->discount    =$request->discount;
         $productClassOB->product_img =$imgname;
-        $productClassOB->user_id     =$this->logged_user->id;
+      //  $productClassOB->user_id     =$this->logged_user->id; // this identify current logged in user
+        $productClassOB->user_id     =$this->Current_User_ID();
     //    $productClassOB->imageUrl =('http://localhost:8000/storage/DB/').$imgname;// -this store image to storage 22storage;
         $productClassOB->imageUrl =('http://localhost:8000/').$imgname;
 

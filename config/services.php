@@ -40,6 +40,12 @@ return [
         ],
     ],
 
+    'nexmo' => [
+        'key' => env('NEXMO_KEY'),
+        'secret' => env('NEXMO_SECRET'),
+        'sms_from' => '01772292522',
+    ],
+
     'google' => [
 
         'client_id' => '409728095887-d1b1ge29fud8g2o6p5ch3ds1g3g3kuqv.apps.googleusercontent.com',

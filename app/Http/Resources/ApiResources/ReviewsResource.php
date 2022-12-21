@@ -23,7 +23,7 @@ class ReviewsResource extends JsonResource
             'User' => $this->user_id,
 
             'href'=>[
-                'Product'=>route('review-of_whitch_Porduct' ,$this->id)
+                'Product'=>route('products.show' ,$this->product_id)
             ]
 
 /*'Name' => $this->name,

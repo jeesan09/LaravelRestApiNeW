@@ -39,9 +39,12 @@ class ReviewsController extends Controller
         //return ReviewsResource::collection(Reviews::all());
        // return 'good Job';
 
+      //  return $product->review_many;  //perfectly working 
+
+       return   $all_categories = Product::with('review_many')->where('id', '=', $product->id)->get(); //this is also working 
 
 
-        return ReviewsResource::collection($product->review_many);
+        return ReviewsResource::collection($product->review_many); // only rewiews
        //return  $product->review_many;
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
+use App\Model\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -37,11 +38,23 @@ class CategoryController extends Controller
     {
         //
     }
-    public function Show_All_Products(Category $catego)
+
+
+    public function Show_All_Products($catego)
     {
         //
-        //dd($category->products);
-       return $catego->products;
+        $products = Category::with('products')->where('id', '=', $catego)->get();
+       
+        return $products;
+    }
+
+
+    public function Show_All_Categorisa($product_id)
+    {
+        //
+        $all_categories = Product::with('categorys')->where('id', '=', $product_id)->get();
+       
+        return $all_categories;
     }
 
     /**

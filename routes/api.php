@@ -16,9 +16,7 @@ use Illuminate\Http\Request;
 Route::group([
 
   //  'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function ($router) {
+      'prefix' => 'auth'], function ($router) {
 
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@create');
@@ -77,21 +75,20 @@ Route::group([
 
 //--------------------------------------Review---------------------------------------------------------------------   
     Route::get('/ReviewID/{review}','ReviewsController@ReviewBilongsto')->name('review-of_whitch_Porduct');//particuar reviews Product
-    Route::get('/allReviews','ReviewsController@ShowALLReviews');//all Reviews
+     Route::get('/allReviews','ReviewsController@ShowALLReviews');
+// the way of accersing gates
+   //  Route::get('/allReviews','ReviewsController@ShowALLReviews')->can('superAdmin-gate', MyPolicy::class);//all Reviews
 
    // Route::get('/user_reviews','ReviewsController@MyReviews');
 
     Route::get('/user_reviews',[//'ReviewsController@MyReviews'
          'uses' => 'ReviewsController@MyReviews',
-         'middleware' => 'can:superAdmin-gate',
+      //   'middleware' => 'can:superAdmin-gate',
 
     ]);// single user has how many reviews//also working with Router MiddleWere-->admin middlewere set to this route.
 
 //--------------------------------------------------------------------------------------------------------------------
-//---------------------------------Catecory----------------------------------------------------------------------------
 
-    Route::get('/category_products/{catego}','CategoryController@Show_All_Products');//products of a spcific catecory
-    Route::post('/category_delete/{product}','ProductController@removeCategory');//depatch category from Products
 //---------------------------------Notification Routes----------------------------------------------------------------
 
     Route::get('/notification','NotificationController@index');   
@@ -102,6 +99,22 @@ Route::group([
     Route::get('/notification/Read_Notification','NotificationController@CurrentUser_ReadNotification');
 
 //-------------------------------------------------------------------------------------------------------------------   
+                              // categoris Routes
+
+    Route::get('/categories/{catego}','CategoryController@Show_All_Products');  //products of a spcific catecory
+    Route::get('/product_categories/{product_id}','CategoryController@Show_All_Categorisa');  //All categoris of a spacific product
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Route::group([ 'prefix'=>'products','middleware' => ['jwt.auth']],function(){
 
